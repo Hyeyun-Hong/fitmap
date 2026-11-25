@@ -39,7 +39,7 @@ export default function OpinionCard({
   return (
     <section className="rounded-xl border border-neutral-200 p-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-bold">AI 종합 의견</h3>
+        <h3 className="text-sm font-bold">종합 의견</h3>
         <span className="text-[11px] text-neutral-400">{opinion.fallback ? "계산 결과 기반" : "AI 생성"}</span>
       </div>
       <p className="mt-2 font-bold">{opinion.headline}</p>

@@ -10,7 +10,7 @@ export default function BrandsPage() {
   }));
   return (
     <main className="flex-1">
-      <Header title="브랜드" />
+      <Header title="브랜드 전체" back="/" />
       <BrandTabs brands={list} />
     </main>
   );

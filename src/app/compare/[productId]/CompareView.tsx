@@ -6,6 +6,7 @@ import { compareProduct } from "@/lib/fit";
 import { CATEGORY_LABEL } from "@/lib/data";
 import RefPicker from "@/components/RefPicker";
 import DiffList from "@/components/DiffList";
+import FitOverlay from "@/components/FitOverlay";
 import OpinionCard from "@/components/OpinionCard";
 import { simText } from "@/components/SimilarityBadge";
 import ReviewCard from "@/components/ReviewCard";
@@ -72,6 +73,11 @@ export default function CompareView({ product, review }: { product: Product; rev
               <DiffList diffs={shown.diffs} />
             </section>
           ) : null}
+          {shown ? (
+            <div className="rounded-xl bg-neutral-50 p-1">
+              <FitOverlay category={product.category} diffs={shown.diffs} sizeLabel={shown.sizeLabel} lengthBasis={product.measurementBasis?.length} refLengthBasis={reference?.measurementBasis?.length} />
+            </div>
+          ) : null}
 
           {result.warnings.map((w) => (
             <p key={w} className="text-xs text-amber-700">
@@ -79,8 +85,11 @@ export default function CompareView({ product, review }: { product: Product; rev
             </p>
           ))}
 
-          {result.recommendedSize ? <OpinionCard reference={reference} product={product} result={result} review={review} /> : null}
-          <ReviewCard review={review} />
+          <section className="space-y-3">
+            <h3 className="text-sm font-bold">AI 비교 분석</h3>
+            {result.recommendedSize ? <OpinionCard reference={reference} product={product} result={result} review={review} /> : null}
+            <ReviewCard review={review} />
+          </section>
 
           <p className="text-[11px] leading-relaxed text-neutral-400">
             핏 유사도는 기준 옷과 실측이 얼마나 비슷한지를 나타낸 값이에요. 실측이 비슷해도 소재, 신축성, 디자인에 따라 착용감은 다를 수 있어요.

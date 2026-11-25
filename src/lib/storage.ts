@@ -78,3 +78,66 @@ export function useReferences(): ReferenceGarment[] | null {
 
 export const primaryOf = (refs: ReferenceGarment[] | null, category: Category) =>
   refs?.find((r) => r.category === category && r.isPrimary) ?? refs?.find((r) => r.category === category) ?? null;
+
+// ---------- 찜 · 최근 본 상품 (상품 ID 목록) ----------
+
+const LIKES = "fitmap.likes.v1";
+const RECENT = "fitmap.recent.v1";
+const RECENT_MAX = 20;
+const LIST_EVT = "fitmap-lists";
+
+function readIds(key: string): string[] {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as string[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeIds(key: string, ids: string[]) {
+  localStorage.setItem(key, JSON.stringify(ids));
+  window.dispatchEvent(new Event(LIST_EVT));
+}
+
+export function toggleLike(productId: string) {
+  const ids = readIds(LIKES);
+  writeIds(LIKES, ids.includes(productId) ? ids.filter((x) => x !== productId) : [productId, ...ids]);
+}
+
+/** 상품 상세를 열 때 호출. 가장 최근 본 상품이 맨 앞 */
+export function addRecent(productId: string) {
+  const ids = readIds(RECENT);
+  if (ids[0] === productId) return;
+  writeIds(RECENT, [productId, ...ids.filter((x) => x !== productId)].slice(0, RECENT_MAX));
+}
+
+export function clearRecent() {
+  writeIds(RECENT, []);
+}
+
+const subscribeLists = (cb: () => void) => {
+  window.addEventListener("storage", cb);
+  window.addEventListener(LIST_EVT, cb);
+  return () => {
+    window.removeEventListener("storage", cb);
+    window.removeEventListener(LIST_EVT, cb);
+  };
+};
+
+function useIds(key: string): string[] | null {
+  const raw = useSyncExternalStore(subscribeLists, () => localStorage.getItem(key) ?? "[]", getServerSnapshot);
+  return useMemo(() => {
+    if (raw === null) return null;
+    try {
+      return JSON.parse(raw) as string[];
+    } catch {
+      return [];
+    }
+  }, [raw]);
+}
+
+/** 찜한 상품 ID. 서버 렌더링 중에는 null */
+export const useLikes = () => useIds(LIKES);
+/** 최근 본 상품 ID(최신순). 서버 렌더링 중에는 null */
+export const useRecent = () => useIds(RECENT);
