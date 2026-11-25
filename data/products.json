@@ -1,0 +1,1863 @@
+[
+  {
+    "id": "P021",
+    "brandId": "musinsa-standard",
+    "brandName": "무신사 스탠다드",
+    "name": "베이식 긴소매 티셔츠 2팩",
+    "category": "top",
+    "subCategory": "tshirt",
+    "officialUrl": "https://www.musinsa.com/products/2149254",
+    "price": {
+      "regular": 39800,
+      "sale": 37390
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 68.5,
+          "shoulder": 46,
+          "chest": 51,
+          "sleeve": 56.6
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 70.5,
+          "shoulder": 48,
+          "chest": 53.5,
+          "sleeve": 57.8
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 72.5,
+          "shoulder": 50,
+          "chest": 56,
+          "sleeve": 59
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 74.5,
+          "shoulder": 52,
+          "chest": 58.5,
+          "sleeve": 60.2
+        }
+      },
+      {
+        "label": "2XL",
+        "measurements": {
+          "length": 76.5,
+          "shoulder": 54,
+          "chest": 61,
+          "sleeve": 61.4
+        }
+      },
+      {
+        "label": "3XL",
+        "measurements": {
+          "length": 77.5,
+          "shoulder": 56,
+          "chest": 63.5,
+          "sleeve": 62
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.musinsa.com/products/2149254",
+      "checkedAt": "2026-11-20",
+      "note": "무신사 실측 표. 단면 기준, cm. 공식 판매처가 무신사 브랜드관."
+    }
+  },
+  {
+    "id": "P032",
+    "brandId": "musinsa-standard",
+    "brandName": "무신사 스탠다드",
+    "name": "세미 와이드 히든 밴딩 슬랙스 (블랙)",
+    "category": "bottom",
+    "subCategory": "slacks",
+    "officialUrl": "https://www.musinsa.com/products/1149329",
+    "price": {
+      "regular": null,
+      "sale": 44890
+    },
+    "colors": [],
+    "sizeOptions": [
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "36",
+      "38",
+      "40",
+      "42"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "26",
+        "measurements": {
+          "length": 102,
+          "waist": 35,
+          "thigh": 29.3,
+          "rise": 26,
+          "hem": 20
+        }
+      },
+      {
+        "label": "27",
+        "measurements": {
+          "length": 102,
+          "waist": 36.3,
+          "thigh": 29.9,
+          "rise": 26,
+          "hem": 20.3
+        }
+      },
+      {
+        "label": "28",
+        "measurements": {
+          "length": 103,
+          "waist": 37.5,
+          "thigh": 30.5,
+          "rise": 26.5,
+          "hem": 20.5
+        }
+      },
+      {
+        "label": "29",
+        "measurements": {
+          "length": 103,
+          "waist": 38.8,
+          "thigh": 31.1,
+          "rise": 26.5,
+          "hem": 20.8
+        }
+      },
+      {
+        "label": "30",
+        "measurements": {
+          "length": 104,
+          "waist": 40,
+          "thigh": 31.8,
+          "rise": 27,
+          "hem": 21
+        }
+      },
+      {
+        "label": "31",
+        "measurements": {
+          "length": 104,
+          "waist": 41.3,
+          "thigh": 32.4,
+          "rise": 27,
+          "hem": 21.3
+        }
+      },
+      {
+        "label": "32",
+        "measurements": {
+          "length": 104,
+          "waist": 42.5,
+          "thigh": 33,
+          "rise": 27.5,
+          "hem": 21.5
+        }
+      },
+      {
+        "label": "33",
+        "measurements": {
+          "length": 104,
+          "waist": 43.8,
+          "thigh": 33.6,
+          "rise": 28,
+          "hem": 21.8
+        }
+      },
+      {
+        "label": "34",
+        "measurements": {
+          "length": 105,
+          "waist": 45,
+          "thigh": 34.3,
+          "rise": 28.5,
+          "hem": 22
+        }
+      },
+      {
+        "label": "36",
+        "measurements": {
+          "length": 105,
+          "waist": 47.5,
+          "thigh": 35.5,
+          "rise": 29.5,
+          "hem": 22.5
+        }
+      },
+      {
+        "label": "38",
+        "measurements": {
+          "length": 106,
+          "waist": 50,
+          "thigh": 36.8,
+          "rise": 30.5,
+          "hem": 23
+        }
+      },
+      {
+        "label": "40",
+        "measurements": {
+          "length": 106,
+          "waist": 52.5,
+          "thigh": 38,
+          "rise": 31.5,
+          "hem": 23.5
+        }
+      },
+      {
+        "label": "42",
+        "measurements": {
+          "length": 107,
+          "waist": 55,
+          "thigh": 39.3,
+          "rise": 32.5,
+          "hem": 24
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.musinsa.com/products/1149329",
+      "checkedAt": "2026-11-21",
+      "note": "무신사 실측 표. 단면 기준, cm. 판매가는 브랜드관 목록의 10% 할인가, 정가 미확인."
+    }
+  },
+  {
+    "id": "P022",
+    "brandId": "muji",
+    "brandName": "무인양품",
+    "name": "워싱 옥스포드 버튼다운 긴소매 셔츠",
+    "category": "top",
+    "subCategory": "shirt",
+    "officialUrl": "https://mujikorea.co.kr/products/view/1005435",
+    "price": {
+      "regular": 34900,
+      "sale": null
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "material": "면 100%",
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 73,
+          "shoulder": 46,
+          "chest": 111,
+          "sleeve": 59
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 75,
+          "shoulder": 48,
+          "chest": 116,
+          "sleeve": 60
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 77,
+          "shoulder": 49,
+          "chest": 121,
+          "sleeve": 62
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 79,
+          "shoulder": 51,
+          "chest": 129,
+          "sleeve": 63
+        }
+      },
+      {
+        "label": "XXL",
+        "measurements": {
+          "length": 81,
+          "shoulder": 53,
+          "chest": 137,
+          "sleeve": 64
+        }
+      }
+    ],
+    "measurementBasis": {
+      "chest": "circumference"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://mujikorea.co.kr/products/view/1005435",
+      "checkedAt": "2026-11-20",
+      "note": "가슴은 둘레(비교 시 ÷2). full_arm_length는 전체 팔길이. 단위 cm 명시. 확인 당시 MUJI WEEK 10% 할인 기간이라 할인가는 미확인."
+    }
+  },
+  {
+    "id": "P038",
+    "brandId": "muji",
+    "brandName": "무인양품",
+    "name": "코듀로이 릴랙스 이지 팬츠",
+    "category": "bottom",
+    "subCategory": "cotton",
+    "officialUrl": "https://mujikorea.co.kr/products/view/1005684",
+    "price": {
+      "regular": 49900,
+      "sale": null
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "waist": 70,
+          "rise": 27,
+          "length": 73,
+          "thigh": 34,
+          "hem": 23
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "waist": 75,
+          "rise": 28,
+          "length": 74,
+          "thigh": 35,
+          "hem": 23
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "waist": 80,
+          "rise": 29,
+          "length": 74,
+          "thigh": 37,
+          "hem": 24
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "waist": 88,
+          "rise": 30,
+          "length": 75,
+          "thigh": 39,
+          "hem": 25
+        }
+      },
+      {
+        "label": "XXL",
+        "measurements": {
+          "waist": 96,
+          "rise": 31,
+          "length": 76,
+          "thigh": 42,
+          "hem": 26
+        }
+      }
+    ],
+    "measurementBasis": {
+      "length": "inseam",
+      "waist": "circumference"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://mujikorea.co.kr/products/view/1005684",
+      "checkedAt": "2026-11-21",
+      "note": "표기는 '허리', '엉덩이'지만 값이 둘레 수준이라 둘레로 보이며 확인 필요. 허벅지폭·밑단 폭은 단면. 길이는 인심. 단위 cm 명시."
+    }
+  },
+  {
+    "id": "P023",
+    "brandId": "carhartt-wip",
+    "brandName": "칼하트 WIP",
+    "name": "L/S Blackletter Waffle T-Shirt",
+    "category": "top",
+    "subCategory": "tshirt",
+    "officialUrl": "https://www.carhartt-wip.co.kr/products/336072",
+    "price": {
+      "regular": 128000,
+      "sale": 128000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "chest": 53,
+          "shoulder": 47,
+          "sleeve": 64,
+          "length": 68
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "chest": 56,
+          "shoulder": 50,
+          "sleeve": 65,
+          "length": 70
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "chest": 59,
+          "shoulder": 54,
+          "sleeve": 66,
+          "length": 72
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "chest": 64,
+          "shoulder": 58,
+          "sleeve": 68,
+          "length": 75
+        }
+      },
+      {
+        "label": "XXL",
+        "measurements": {
+          "chest": 67,
+          "shoulder": 60,
+          "sleeve": 68,
+          "length": 77
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.carhartt-wip.co.kr/products/336072",
+      "checkedAt": "2026-11-20",
+      "note": "'사이즈 가이드' 팝업의 상품별 실측. 단면 기준, cm."
+    }
+  },
+  {
+    "id": "P039",
+    "brandId": "carhartt-wip",
+    "brandName": "칼하트 WIP",
+    "name": "Single Knee Pant Dearborn (Black Rinsed)",
+    "category": "bottom",
+    "subCategory": "cotton",
+    "officialUrl": "https://www.carhartt-wip.co.kr/products/338469",
+    "price": {
+      "regular": 225000,
+      "sale": 225000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "W28 L32",
+      "W29 L32",
+      "W30 L32",
+      "W31 L32",
+      "W32 L32",
+      "W34 L32",
+      "W36 L32"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "W28 L32",
+        "measurements": {
+          "waist": 37,
+          "thigh": 32,
+          "hem": 21,
+          "rise": 33,
+          "length": 80
+        }
+      },
+      {
+        "label": "W29 L32",
+        "measurements": {
+          "waist": 38,
+          "thigh": 33,
+          "hem": 21.5,
+          "rise": 34,
+          "length": 81
+        }
+      },
+      {
+        "label": "W30 L32",
+        "measurements": {
+          "waist": 39,
+          "thigh": 33.5,
+          "hem": 22,
+          "rise": 34,
+          "length": 81
+        }
+      },
+      {
+        "label": "W31 L32",
+        "measurements": {
+          "waist": 40.5,
+          "thigh": 34,
+          "hem": 22,
+          "rise": 35,
+          "length": 81.5
+        }
+      },
+      {
+        "label": "W32 L32",
+        "measurements": {
+          "waist": 41,
+          "thigh": 35.5,
+          "hem": 22,
+          "rise": 36,
+          "length": 81.5
+        }
+      },
+      {
+        "label": "W34 L32",
+        "measurements": {
+          "waist": 44,
+          "thigh": 37,
+          "hem": 23,
+          "rise": 37.5,
+          "length": 82
+        }
+      },
+      {
+        "label": "W36 L32",
+        "measurements": {
+          "waist": 46.5,
+          "thigh": 38,
+          "hem": 23,
+          "rise": 39,
+          "length": 82
+        }
+      }
+    ],
+    "measurementBasis": {
+      "length": "inseam"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.carhartt-wip.co.kr/products/338469",
+      "checkedAt": "2026-11-21",
+      "note": "'사이즈 가이드' 팝업. 밑단은 'ANKLE CIRCUMFERENCE'로 표기됐지만 값이 단면 수준이라 확인 필요. 밑위는 앞밑위, 길이는 인심. W33은 값 없음. cm."
+    }
+  },
+  {
+    "id": "P024",
+    "brandId": "covernat",
+    "brandName": "커버낫",
+    "name": "다잉 이펙트 레이어드 롱슬리브 (블루)",
+    "category": "top",
+    "subCategory": "tshirt",
+    "officialUrl": "https://www.covernat.co.kr/product/CO2603LT54BL",
+    "price": {
+      "regular": 69000,
+      "sale": 69000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 62,
+          "shoulder": 43.5,
+          "chest": 49,
+          "sleeve": 55
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 65,
+          "shoulder": 46.5,
+          "chest": 52.5,
+          "sleeve": 57
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 67,
+          "shoulder": 48.5,
+          "chest": 55,
+          "sleeve": 58
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 69,
+          "shoulder": 50.5,
+          "chest": 57.5,
+          "sleeve": 59
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.covernat.co.kr/product/CO2603LT54BL",
+      "checkedAt": "2026-11-20",
+      "note": "'상품안내&사이즈' 안의 텍스트 실측. cm."
+    }
+  },
+  {
+    "id": "P031",
+    "brandId": "covernat",
+    "brandName": "커버낫",
+    "name": "와이드 링사 진 (다크 그레이)",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://www.covernat.co.kr/product/CO2603PT43DG",
+    "price": {
+      "regular": 109000,
+      "sale": 87200
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 102,
+          "waist": 37.5,
+          "thigh": 34.4,
+          "rise": 31.9,
+          "hem": 25
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 103.5,
+          "waist": 40,
+          "thigh": 35.7,
+          "rise": 32.7,
+          "hem": 25.5
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 105,
+          "waist": 42.5,
+          "thigh": 37,
+          "rise": 33.5,
+          "hem": 26
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 106.5,
+          "waist": 45,
+          "thigh": 38.3,
+          "rise": 34.3,
+          "hem": 26.5
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.covernat.co.kr/product/CO2603PT43DG",
+      "checkedAt": "2026-11-21",
+      "note": "텍스트 실측. 단면 기준, cm."
+    }
+  },
+  {
+    "id": "P025",
+    "brandId": "thisisneverthat",
+    "brandName": "디스이즈네버댓",
+    "name": "GORE-TEX WINDSTOPPER Plaid Shirt (Light Blue)",
+    "category": "top",
+    "subCategory": "shirt",
+    "officialUrl": "https://www.thisisneverthat.com/products/fw26-gore-tex-windstopper-c-plaid-shirt",
+    "price": {
+      "regular": 219000,
+      "sale": 219000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 66,
+          "sleeve": 60,
+          "chest": 62.5,
+          "shoulder": 52
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 68,
+          "sleeve": 62,
+          "chest": 65,
+          "shoulder": 54
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 70,
+          "sleeve": 64,
+          "chest": 67.5,
+          "shoulder": 56
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 72,
+          "sleeve": 66,
+          "chest": 70,
+          "shoulder": 58
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.thisisneverthat.com/products/fw26-gore-tex-windstopper-c-plaid-shirt",
+      "checkedAt": "2026-11-20",
+      "note": "'Size Guide' 표(Length, Arm, Chest, Shoulder). cm. 고가 협업 상품이라 일반 상품으로 교체 검토."
+    }
+  },
+  {
+    "id": "P033",
+    "brandId": "thisisneverthat",
+    "brandName": "디스이즈네버댓",
+    "name": "GORE-TEX 3L All Weather Pant",
+    "category": "bottom",
+    "subCategory": "etc",
+    "officialUrl": "https://www.thisisneverthat.com/products/fw26-gore-tex-3l-all-weather-pant",
+    "price": {
+      "regular": 299000,
+      "sale": 299000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 101,
+          "waist": 37,
+          "thigh": 36,
+          "hem": 24,
+          "rise": 32
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 104,
+          "waist": 39,
+          "thigh": 37,
+          "hem": 24.5,
+          "rise": 33
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 107,
+          "waist": 41,
+          "thigh": 38,
+          "hem": 25,
+          "rise": 34
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 110,
+          "waist": 43,
+          "thigh": 39,
+          "hem": 25.5,
+          "rise": 35
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.thisisneverthat.com/products/fw26-gore-tex-3l-all-weather-pant",
+      "checkedAt": "2026-11-21",
+      "note": "'Size Guide' 표. cm. 고가 협업 상품이라 일반 팬츠로 교체 검토."
+    }
+  },
+  {
+    "id": "P026",
+    "brandId": "uniqlo",
+    "brandName": "유니클로",
+    "name": "크루넥T (00 WHITE)",
+    "category": "top",
+    "subCategory": "tshirt",
+    "officialUrl": "https://www.uniqlo.com/kr/ko/products/E422992-000/00",
+    "price": {
+      "regular": 19900,
+      "sale": 19900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "XS",
+        "measurements": {
+          "length": 64,
+          "shoulder": 43.5,
+          "chest": 47,
+          "sleeve": 42
+        }
+      },
+      {
+        "label": "S",
+        "measurements": {
+          "length": 66,
+          "shoulder": 45,
+          "chest": 50,
+          "sleeve": 43
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 69,
+          "shoulder": 46.5,
+          "chest": 53,
+          "sleeve": 45
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 72,
+          "shoulder": 48,
+          "chest": 56,
+          "sleeve": 47
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 75,
+          "shoulder": 50,
+          "chest": 60,
+          "sleeve": 49
+        }
+      },
+      {
+        "label": "XXL",
+        "measurements": {
+          "length": 77,
+          "shoulder": 52,
+          "chest": 64,
+          "sleeve": 50
+        }
+      },
+      {
+        "label": "3XL",
+        "measurements": {
+          "length": 77,
+          "shoulder": 54,
+          "chest": 68,
+          "sleeve": 51
+        }
+      },
+      {
+        "label": "4XL",
+        "measurements": {
+          "length": 77.5,
+          "shoulder": 56,
+          "chest": 72,
+          "sleeve": 52.5
+        }
+      }
+    ],
+    "measurementBasis": {
+      "sleeve": "center_back"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.uniqlo.com/kr/ko/products/E422992-000/00",
+      "checkedAt": "2026-11-20",
+      "note": "'사이즈 안내 > 제품 치수' 탭. 소매는 등 중심~소매 끝(화장)이라 다른 브랜드 소매길이와 직접 비교 불가. cm."
+    }
+  },
+  {
+    "id": "P035",
+    "brandId": "uniqlo",
+    "brandName": "유니클로",
+    "name": "와이드스트레이트진",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://www.uniqlo.com/kr/ko/products/E470542-000/00",
+    "price": {
+      "regular": null,
+      "sale": 39900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "38",
+      "40",
+      "42"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "28",
+        "measurements": {
+          "waist": 77,
+          "thigh": 33,
+          "rise": 28.5,
+          "hem": 22,
+          "length": 74
+        }
+      },
+      {
+        "label": "29",
+        "measurements": {
+          "waist": 79.5,
+          "thigh": 34,
+          "rise": 28.5,
+          "hem": 22.5,
+          "length": 75
+        }
+      },
+      {
+        "label": "30",
+        "measurements": {
+          "waist": 82,
+          "thigh": 34.5,
+          "rise": 29,
+          "hem": 22.5,
+          "length": 75
+        }
+      },
+      {
+        "label": "31",
+        "measurements": {
+          "waist": 84.5,
+          "thigh": 35,
+          "rise": 29,
+          "hem": 23,
+          "length": 76
+        }
+      },
+      {
+        "label": "32",
+        "measurements": {
+          "waist": 87,
+          "thigh": 36,
+          "rise": 29.5,
+          "hem": 23.5,
+          "length": 76
+        }
+      },
+      {
+        "label": "33",
+        "measurements": {
+          "waist": 89.5,
+          "thigh": 36.5,
+          "rise": 30,
+          "hem": 24,
+          "length": 77
+        }
+      },
+      {
+        "label": "34",
+        "measurements": {
+          "waist": 92,
+          "thigh": 37,
+          "rise": 30,
+          "hem": 24,
+          "length": 77
+        }
+      },
+      {
+        "label": "35",
+        "measurements": {
+          "waist": 94.5,
+          "thigh": 38,
+          "rise": 30.5,
+          "hem": 24.5,
+          "length": 77
+        }
+      },
+      {
+        "label": "36",
+        "measurements": {
+          "waist": 97,
+          "thigh": 38.5,
+          "rise": 30.5,
+          "hem": 24.5,
+          "length": 77
+        }
+      },
+      {
+        "label": "38",
+        "measurements": {
+          "waist": 102,
+          "thigh": 39.5,
+          "rise": 31,
+          "hem": 25,
+          "length": 77
+        }
+      },
+      {
+        "label": "40",
+        "measurements": {
+          "waist": 107,
+          "thigh": 41.5,
+          "rise": 32,
+          "hem": 25.5,
+          "length": 77
+        }
+      },
+      {
+        "label": "42",
+        "measurements": {
+          "waist": 112,
+          "thigh": 43,
+          "rise": 32,
+          "hem": 25.5,
+          "length": 77
+        }
+      }
+    ],
+    "measurementBasis": {
+      "waist": "circumference",
+      "length": "inseam"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.uniqlo.com/kr/ko/products/E470542-000/00",
+      "checkedAt": "2026-11-21",
+      "note": "'제품 치수' 탭. 허리·엉덩이는 둘레(÷2), 허벅지·밑단은 너비(단면). 길이는 총장이 아니라 다리 길이(인심). 가격인하 표시, 정가 미확인. cm."
+    }
+  },
+  {
+    "id": "P027",
+    "brandId": "spao",
+    "brandName": "스파오",
+    "name": "배색 플리스 반오픈 풀오버 (SPFWG4TC03)",
+    "category": "top",
+    "subCategory": "sweat",
+    "officialUrl": "https://www.spao.com/i/item?itemNo=2607012363&lowerVendNo=LV26000002",
+    "price": {
+      "regular": 39900,
+      "sale": 36900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S(090)",
+      "M(095)",
+      "L(100)",
+      "XL(105)"
+    ],
+    "material": "폴리에스터 100%",
+    "madeIn": "중국",
+    "sizes": [
+      {
+        "label": "S(090)",
+        "measurements": {
+          "shoulder": 47,
+          "sleeve": 60,
+          "chest": 112,
+          "length": 65
+        }
+      },
+      {
+        "label": "M(095)",
+        "measurements": {
+          "shoulder": 48.5,
+          "sleeve": 61.5,
+          "chest": 117,
+          "length": 67
+        }
+      },
+      {
+        "label": "L(100)",
+        "measurements": {
+          "shoulder": 50,
+          "sleeve": 63,
+          "chest": 122,
+          "length": 69
+        }
+      },
+      {
+        "label": "XL(105)",
+        "measurements": {
+          "shoulder": 51.5,
+          "sleeve": 64.5,
+          "chest": 127,
+          "length": 71
+        }
+      }
+    ],
+    "measurementBasis": {
+      "chest": "circumference"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.spao.com/i/item?itemNo=2607012363&lowerVendNo=LV26000002",
+      "checkedAt": "2026-11-20",
+      "note": "'사이즈' 탭(크레마 핏 위젯). 페이지에 '둘레=단면×2' 명시 → 가슴 ÷2로 비교. cm."
+    }
+  },
+  {
+    "id": "P037",
+    "brandId": "spao",
+    "brandName": "스파오",
+    "name": "카고 와이드 커브드 팬츠 (SPTCG49C04)",
+    "category": "bottom",
+    "subCategory": "cotton",
+    "officialUrl": "https://www.spao.com/i/item?itemNo=2608015934&lowerVendNo=LV26000002",
+    "price": {
+      "regular": 59900,
+      "sale": 41930
+    },
+    "colors": [],
+    "sizeOptions": [
+      "28(074)",
+      "30(078)",
+      "32(082)",
+      "34(086)",
+      "36(090)"
+    ],
+    "material": "면 100%",
+    "madeIn": "베트남",
+    "sizes": [
+      {
+        "label": "28(074)",
+        "measurements": {
+          "waist": 75,
+          "rise": 31,
+          "thigh": 72.5,
+          "hem": 47.6,
+          "length": 107.5
+        }
+      },
+      {
+        "label": "30(078)",
+        "measurements": {
+          "waist": 80,
+          "rise": 32,
+          "thigh": 75.5,
+          "hem": 48.8,
+          "length": 108.5
+        }
+      },
+      {
+        "label": "32(082)",
+        "measurements": {
+          "waist": 85,
+          "rise": 33,
+          "thigh": 78.5,
+          "hem": 50,
+          "length": 109.5
+        }
+      },
+      {
+        "label": "34(086)",
+        "measurements": {
+          "waist": 90,
+          "rise": 34,
+          "thigh": 81.5,
+          "hem": 51.2,
+          "length": 110.5
+        }
+      },
+      {
+        "label": "36(090)",
+        "measurements": {
+          "waist": 95,
+          "rise": 35,
+          "thigh": 84.5,
+          "hem": 52.4,
+          "length": 111.5
+        }
+      }
+    ],
+    "measurementBasis": {
+      "waist": "circumference",
+      "thigh": "circumference",
+      "hem": "circumference"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.spao.com/i/item?itemNo=2608015934&lowerVendNo=LV26000002",
+      "checkedAt": "2026-11-21",
+      "note": "크레마 핏 위젯. 둘레=단면×2 명시 → 허리·엉덩이·허벅지·밑단 모두 ÷2. 밑위는 앞밑위. cm."
+    }
+  },
+  {
+    "id": "P028",
+    "brandId": "zara",
+    "brandName": "자라",
+    "name": "콤비 레이스 릴렉스핏 셔츠 (스크래치 화이트)",
+    "category": "top",
+    "subCategory": "shirt",
+    "officialUrl": "https://www.zara.com/kr/ko/%E1%84%85%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%91%E1%85%B5%E1%86%BA-%E1%84%8F%E1%85%A9%E1%86%B7%E1%84%87%E1%85%B5-%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p01021065.html",
+    "price": {
+      "regular": 89900,
+      "sale": 89900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S (KR 90)",
+      "M (KR 95-100)",
+      "L (KR 100-105)",
+      "XL (KR 105-110)"
+    ],
+    "material": "면 혼방(혼용률 미확인)",
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S (KR 90)",
+        "measurements": {
+          "chest": 58,
+          "sleeve": 30.5
+        }
+      },
+      {
+        "label": "M (KR 95-100)",
+        "measurements": {
+          "chest": 60,
+          "sleeve": 31
+        }
+      },
+      {
+        "label": "L (KR 100-105)",
+        "measurements": {
+          "chest": 62,
+          "sleeve": 31.5
+        }
+      },
+      {
+        "label": "XL (KR 105-110)",
+        "measurements": {
+          "chest": 64,
+          "sleeve": 32
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "partial",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.zara.com/kr/ko/%E1%84%85%E1%85%B5%E1%86%AF%E1%84%85%E1%85%A6%E1%86%A8%E1%84%89%E1%85%B3%E1%84%91%E1%85%B5%E1%86%BA-%E1%84%8F%E1%85%A9%E1%86%B7%E1%84%87%E1%85%B5-%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3-%E1%84%89%E1%85%A7%E1%84%8E%E1%85%B3-p01021065.html",
+      "checkedAt": "2026-11-20",
+      "note": "'제품 사이즈' 표. 가슴은 '가슴 둘레'로 표기됐지만 값이 단면 수준이라 확인 필요. 어깨너비 없음(등 너비만 있음). 반소매 상품. cm."
+    }
+  },
+  {
+    "id": "P029",
+    "brandId": "insilence",
+    "brandName": "인사일런스",
+    "name": "모달 셔츠 (CHARCOAL)",
+    "category": "top",
+    "subCategory": "shirt",
+    "officialUrl": "https://insilence.co.kr/product/detail.html?product_no=8259",
+    "price": {
+      "regular": 144000,
+      "sale": 129000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L"
+    ],
+    "material": "폴리에스터 66%, 비스코스 16%, 모달 8%, 폴리우레탄 5%, 아세테이트 5%",
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 74.5,
+          "shoulder": 49,
+          "chest": 60,
+          "sleeve": 61
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 76.5,
+          "shoulder": 51,
+          "chest": 62,
+          "sleeve": 62
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 78.5,
+          "shoulder": 53,
+          "chest": 64,
+          "sleeve": 63
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://insilence.co.kr/product/detail.html?product_no=8259",
+      "checkedAt": "2026-11-25",
+      "note": "총장은 뒷중심 기준. 단면 표기. 단위 표기는 없음(수치상 cm)."
+    }
+  },
+  {
+    "id": "P036",
+    "brandId": "insilence",
+    "brandName": "인사일런스",
+    "name": "가먼트다잉 페인터 팬츠 (CHARCOAL)",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://insilence.co.kr/product/detail.html?product_no=8014",
+    "price": {
+      "regular": 177000,
+      "sale": 123900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L"
+    ],
+    "material": "인도 Raymond 데님(혼용률 미확인)",
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 108,
+          "waist": 42,
+          "thigh": 33.5,
+          "rise": 31.5,
+          "hem": 24
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 110,
+          "waist": 44,
+          "thigh": 34.5,
+          "rise": 32.5,
+          "hem": 24.5
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 112,
+          "waist": 46,
+          "thigh": 35.5,
+          "rise": 33.5,
+          "hem": 25
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://insilence.co.kr/product/detail.html?product_no=8014",
+      "checkedAt": "2026-11-21",
+      "note": "단면 표기. 단위 표기는 없음(수치상 cm). 팀원 JSON의 NAVY(product_no=8013)와 같은 상품의 다른 색상."
+    }
+  },
+  {
+    "id": "P030",
+    "brandId": "partimento",
+    "brandName": "파르티멘토",
+    "name": "[REWORKS] Wool Fleece Half Zip Pullover (Navy)",
+    "category": "top",
+    "subCategory": "sweat",
+    "officialUrl": "https://partimento.com/product/detail.html?product_no=19911",
+    "price": {
+      "regular": 99900,
+      "sale": 79900
+    },
+    "colors": [],
+    "sizeOptions": [
+      "MEDIUM",
+      "LARGE"
+    ],
+    "material": "울 45%, 폴리에스터 55%",
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "MEDIUM",
+        "measurements": {
+          "length": 66.5,
+          "shoulder": 51.5,
+          "chest": 58,
+          "sleeve": 60.5
+        }
+      },
+      {
+        "label": "LARGE",
+        "measurements": {
+          "length": 68.5,
+          "shoulder": 53.5,
+          "chest": 60,
+          "sleeve": 61.5
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://partimento.com/product/detail.html?product_no=19911",
+      "checkedAt": "2026-11-25",
+      "note": "LENGTH·SHOULDER·CHEST·SLEEVE 표. 단위 표기 없음(수치상 cm). 확인일 기준 품절, 12/2 예약배송."
+    }
+  },
+  {
+    "id": "P034",
+    "brandId": "modnine",
+    "brandName": "모드나인",
+    "name": "No Plans - MOD7w",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://www.modnine.com/product/no-plans-mod7w/985/category/197/display/1/",
+    "price": {
+      "regular": 169000,
+      "sale": 169000
+    },
+    "colors": [],
+    "sizeOptions": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "33"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "29",
+        "measurements": {
+          "waist": 38.5,
+          "rise": 29.5,
+          "thigh": 32,
+          "hem": 24,
+          "length": 105
+        }
+      },
+      {
+        "label": "30",
+        "measurements": {
+          "waist": 39.5,
+          "rise": 30,
+          "thigh": 32.5,
+          "hem": 24.5,
+          "length": 106
+        }
+      },
+      {
+        "label": "31",
+        "measurements": {
+          "waist": 40.5,
+          "rise": 30.5,
+          "thigh": 33,
+          "hem": 25,
+          "length": 107
+        }
+      },
+      {
+        "label": "32",
+        "measurements": {
+          "waist": 41.5,
+          "rise": 31,
+          "thigh": 33.5,
+          "hem": 25.5,
+          "length": 108
+        }
+      },
+      {
+        "label": "33",
+        "measurements": {
+          "waist": 42.5,
+          "rise": 31.5,
+          "thigh": 34,
+          "hem": 26,
+          "length": 109
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.modnine.com/product/no-plans-mod7w/985/category/197/display/1/",
+      "checkedAt": "2026-11-21",
+      "note": "'사이즈' 탭, 단위 cm 명시."
+    }
+  },
+  {
+    "id": "P040",
+    "brandId": "giordano",
+    "brandName": "지오다노",
+    "name": "스트레이트 기모 데님 팬츠 (01115947)",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://www.giordano.co.kr/shop/detail.php?pno=E19DE38BC4D7571373729C47843D6827",
+    "price": {
+      "regular": 64800,
+      "sale": 58300
+    },
+    "colors": [],
+    "sizeOptions": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "material": null,
+    "madeIn": null,
+    "sizes": [
+      {
+        "label": "29",
+        "measurements": {
+          "waist": 78.7,
+          "thigh": 61.9,
+          "hem": 45.1,
+          "rise": 27.3,
+          "length": 104.8
+        }
+      },
+      {
+        "label": "30",
+        "measurements": {
+          "waist": 81.3,
+          "thigh": 63.2,
+          "hem": 45.7,
+          "rise": 27.9,
+          "length": 105.4
+        }
+      },
+      {
+        "label": "31",
+        "measurements": {
+          "waist": 83.8,
+          "thigh": 64.5,
+          "hem": 46.4,
+          "rise": 28.6,
+          "length": 106.0
+        }
+      },
+      {
+        "label": "32",
+        "measurements": {
+          "waist": 86.4,
+          "thigh": 65.7,
+          "hem": 47.0,
+          "rise": 29.2,
+          "length": 106.7
+        }
+      },
+      {
+        "label": "34",
+        "measurements": {
+          "waist": 91.4,
+          "thigh": 68.3,
+          "hem": 48.3,
+          "rise": 30.5,
+          "length": 108.0
+        }
+      }
+    ],
+    "measurementBasis": {
+      "waist": "circumference",
+      "thigh": "circumference",
+      "hem": "circumference"
+    },
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://www.giordano.co.kr/shop/detail.php?pno=E19DE38BC4D7571373729C47843D6827",
+      "checkedAt": "2026-11-21",
+      "note": "'DETAIL SIZE' 이미지형 표를 눈으로 읽어 옮김(재확인 권장). 둘레 표기 → ÷2. 밑위는 앞밑위. 28·33·36은 값 없음. cm."
+    }
+  },
+  {
+    "id": "P001",
+    "brandId": "coor",
+    "brandName": "쿠어",
+    "name": "케이블 믹스드 트러커 가디건",
+    "category": "top",
+    "subCategory": "knit",
+    "officialUrl": "https://coor.kr/product/%EC%BC%80%EC%9D%B4%EB%B8%94-%EB%AF%B9%EC%8A%A4%EB%93%9C-%ED%8A%B8%EB%9F%AC%EC%BB%A4-%EA%B0%80%EB%94%94%EA%B1%B4-%EC%B0%A8%EC%BD%9C%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%A9%9C%EB%9E%80%EC%A7%80/4078/category/94/display/1/",
+    "price": {
+      "regular": 330000,
+      "sale": 297000
+    },
+    "colors": [
+      "차콜그레이멜란지"
+    ],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": "WOOL 100%",
+    "madeIn": "CHINA",
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 62.5,
+          "chest": 59.5,
+          "shoulder": 52.0,
+          "sleeve": 59.4
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 64.0,
+          "chest": 62.0,
+          "shoulder": 53.5,
+          "sleeve": 60.7
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 65.5,
+          "chest": 64.5,
+          "shoulder": 55.0,
+          "sleeve": 62.0
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 67.0,
+          "chest": 67.0,
+          "shoulder": 56.5,
+          "sleeve": 63.3
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://coor.kr/product/%EC%BC%80%EC%9D%B4%EB%B8%94-%EB%AF%B9%EC%8A%A4%EB%93%9C-%ED%8A%B8%EB%9F%AC%EC%BB%A4-%EA%B0%80%EB%94%94%EA%B1%B4-%EC%B0%A8%EC%BD%9C%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%A9%9C%EB%9E%80%EC%A7%80/4078/category/94/display/1/",
+      "checkedAt": null,
+      "note": "팀원 조사 데이터(brand_products_data-v2)를 변환한 샘플. 확인일과 측정 기준(단면 여부)은 원본 페이지에서 재확인 필요."
+    }
+  },
+  {
+    "id": "P002",
+    "brandId": "coor",
+    "brandName": "쿠어",
+    "name": "스트레이트 레그 프레스드 데님 진스",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://coor.kr/product/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%A0%88%EA%B7%B8-%ED%94%84%EB%A0%88%EC%8A%A4%EB%93%9C-%EB%8D%B0%EB%8B%98-%EC%A7%84%EC%8A%A4-%EC%9B%8C%EC%8B%9C%EB%93%9C%EB%B8%94%EB%A3%A8/4038/category/80/display/1/",
+    "price": {
+      "regular": 165000,
+      "sale": 148500
+    },
+    "colors": [
+      "워시드블루"
+    ],
+    "sizeOptions": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "material": "COTTON 100%",
+    "madeIn": "KOREA",
+    "sizes": [
+      {
+        "label": "S",
+        "measurements": {
+          "length": 106.0,
+          "waist": 40.0,
+          "thigh": 33.3,
+          "rise": 26.0,
+          "hem": 24.9
+        }
+      },
+      {
+        "label": "M",
+        "measurements": {
+          "length": 107.0,
+          "waist": 42.0,
+          "thigh": 34.3,
+          "rise": 26.5,
+          "hem": 25.2
+        }
+      },
+      {
+        "label": "L",
+        "measurements": {
+          "length": 108.0,
+          "waist": 44.0,
+          "thigh": 35.3,
+          "rise": 27.0,
+          "hem": 25.5
+        }
+      },
+      {
+        "label": "XL",
+        "measurements": {
+          "length": 109.0,
+          "waist": 46.0,
+          "thigh": 36.3,
+          "rise": 27.5,
+          "hem": 25.8
+        }
+      }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://coor.kr/product/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%A0%88%EA%B7%B8-%ED%94%84%EB%A0%88%EC%8A%A4%EB%93%9C-%EB%8D%B0%EB%8B%98-%EC%A7%84%EC%8A%A4-%EC%9B%8C%EC%8B%9C%EB%93%9C%EB%B8%94%EB%A3%A8/4038/category/80/display/1/",
+      "checkedAt": null,
+      "note": "팀원 조사 데이터(brand_products_data-v2)를 변환한 샘플. 확인일과 측정 기준(단면 여부)은 원본 페이지에서 재확인 필요."
+    }
+  }
+]

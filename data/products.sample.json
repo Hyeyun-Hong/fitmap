@@ -1,0 +1,58 @@
+[
+  {
+    "id": "P001",
+    "brandId": "coor",
+    "brandName": "쿠어 (COOR)",
+    "name": "케이블 믹스드 트러커 가디건",
+    "category": "top",
+    "subCategory": "knit",
+    "officialUrl": "https://coor.kr/product/%EC%BC%80%EC%9D%B4%EB%B8%94-%EB%AF%B9%EC%8A%A4%EB%93%9C-%ED%8A%B8%EB%9F%AC%EC%BB%A4-%EA%B0%80%EB%94%94%EA%B1%B4-%EC%B0%A8%EC%BD%9C%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%A9%9C%EB%9E%80%EC%A7%80/4078/category/94/display/1/",
+    "price": { "regular": 330000, "sale": 297000 },
+    "colors": ["차콜그레이멜란지"],
+    "sizeOptions": ["S", "M", "L", "XL"],
+    "material": "WOOL 100%",
+    "madeIn": "CHINA",
+    "sizes": [
+      { "label": "S", "measurements": { "length": 62.5, "chest": 59.5, "shoulder": 52.0, "sleeve": 59.4 } },
+      { "label": "M", "measurements": { "length": 64.0, "chest": 62.0, "shoulder": 53.5, "sleeve": 60.7 } },
+      { "label": "L", "measurements": { "length": 65.5, "chest": 64.5, "shoulder": 55.0, "sleeve": 62.0 } },
+      { "label": "XL", "measurements": { "length": 67.0, "chest": 67.0, "shoulder": 56.5, "sleeve": 63.3 } }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://coor.kr/product/%EC%BC%80%EC%9D%B4%EB%B8%94-%EB%AF%B9%EC%8A%A4%EB%93%9C-%ED%8A%B8%EB%9F%AC%EC%BB%A4-%EA%B0%80%EB%94%94%EA%B1%B4-%EC%B0%A8%EC%BD%9C%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%A9%9C%EB%9E%80%EC%A7%80/4078/category/94/display/1/",
+      "checkedAt": null,
+      "note": "팀원 조사 데이터(brand_products_data-v2)를 변환한 샘플. 확인일과 측정 기준(단면 여부)은 원본 페이지에서 재확인 필요."
+    }
+  },
+  {
+    "id": "P002",
+    "brandId": "coor",
+    "brandName": "쿠어 (COOR)",
+    "name": "스트레이트 레그 프레스드 데님 진스",
+    "category": "bottom",
+    "subCategory": "denim",
+    "officialUrl": "https://coor.kr/product/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%A0%88%EA%B7%B8-%ED%94%84%EB%A0%88%EC%8A%A4%EB%93%9C-%EB%8D%B0%EB%8B%98-%EC%A7%84%EC%8A%A4-%EC%9B%8C%EC%8B%9C%EB%93%9C%EB%B8%94%EB%A3%A8/4038/category/80/display/1/",
+    "price": { "regular": 165000, "sale": 148500 },
+    "colors": ["워시드블루"],
+    "sizeOptions": ["S", "M", "L", "XL"],
+    "material": "COTTON 100%",
+    "madeIn": "KOREA",
+    "sizes": [
+      { "label": "S", "measurements": { "length": 106.0, "waist": 40.0, "thigh": 33.3, "rise": 26.0, "hem": 24.9 } },
+      { "label": "M", "measurements": { "length": 107.0, "waist": 42.0, "thigh": 34.3, "rise": 26.5, "hem": 25.2 } },
+      { "label": "L", "measurements": { "length": 108.0, "waist": 44.0, "thigh": 35.3, "rise": 27.0, "hem": 25.5 } },
+      { "label": "XL", "measurements": { "length": 109.0, "waist": 46.0, "thigh": 36.3, "rise": 27.5, "hem": 25.8 } }
+    ],
+    "measurementBasis": {},
+    "measurementStatus": "full",
+    "imageUrl": null,
+    "source": {
+      "url": "https://coor.kr/product/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%9D%B4%ED%8A%B8-%EB%A0%88%EA%B7%B8-%ED%94%84%EB%A0%88%EC%8A%A4%EB%93%9C-%EB%8D%B0%EB%8B%98-%EC%A7%84%EC%8A%A4-%EC%9B%8C%EC%8B%9C%EB%93%9C%EB%B8%94%EB%A3%A8/4038/category/80/display/1/",
+      "checkedAt": null,
+      "note": "팀원 조사 데이터(brand_products_data-v2)를 변환한 샘플. 확인일과 측정 기준(단면 여부)은 원본 페이지에서 재확인 필요."
+    }
+  }
+]

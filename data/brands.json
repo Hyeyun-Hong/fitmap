@@ -1,0 +1,115 @@
+[
+  {
+    "id": "musinsa-standard",
+    "name": "무신사 스탠다드",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.musinsa.com/brand/musinsastandard"
+  },
+  {
+    "id": "muji",
+    "name": "무인양품",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://mujikorea.co.kr/"
+  },
+  {
+    "id": "carhartt-wip",
+    "name": "칼하트 WIP",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.carhartt-wip.co.kr/"
+  },
+  {
+    "id": "covernat",
+    "name": "커버낫",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.covernat.co.kr/"
+  },
+  {
+    "id": "thisisneverthat",
+    "name": "디스이즈네버댓",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.thisisneverthat.com/"
+  },
+  {
+    "id": "uniqlo",
+    "name": "유니클로",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.uniqlo.com/kr/ko/"
+  },
+  {
+    "id": "spao",
+    "name": "스파오",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://www.spao.com/"
+  },
+  {
+    "id": "zara",
+    "name": "자라",
+    "categories": [
+      "top"
+    ],
+    "officialUrl": "https://www.zara.com/kr/ko/"
+  },
+  {
+    "id": "insilence",
+    "name": "인사일런스",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://insilence.co.kr/"
+  },
+  {
+    "id": "partimento",
+    "name": "파르티멘토",
+    "categories": [
+      "top"
+    ],
+    "officialUrl": "https://partimento.com/"
+  },
+  {
+    "id": "modnine",
+    "name": "모드나인",
+    "categories": [
+      "bottom"
+    ],
+    "officialUrl": "https://www.modnine.com/"
+  },
+  {
+    "id": "giordano",
+    "name": "지오다노",
+    "categories": [
+      "bottom"
+    ],
+    "officialUrl": "https://www.giordano.co.kr/"
+  },
+  {
+    "id": "coor",
+    "name": "쿠어",
+    "categories": [
+      "top",
+      "bottom"
+    ],
+    "officialUrl": "https://coor.kr/"
+  }
+]
