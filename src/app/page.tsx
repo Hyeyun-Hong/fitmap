@@ -21,7 +21,7 @@ export default function Home() {
           <p className="mt-1 text-lg font-bold leading-snug">아끼는 옷 한 벌이면 충분해요</p>
           <p className="mt-1 text-sm text-neutral-300">핏이 마음에 들었던 옷을 등록하면 다른 브랜드 옷과 비교해 드려요.</p>
         </Link>
-        <Link href="/settings" className="block rounded-2xl bg-emerald-50 p-5">
+        <Link href="/settings/guide" className="block rounded-2xl bg-emerald-50 p-5">
           <p className="text-xs text-emerald-700">측정 가이드</p>
           <p className="mt-1 font-bold">줄자 하나로 5분, 실측 재는 법</p>
         </Link>

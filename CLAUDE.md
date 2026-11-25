@@ -8,7 +8,7 @@
 
 ## 범위
 
-**발표까지 만든다 (MVP)**: 상단 헤더(좌 카테고리 메뉴 · 가운데 FIT MAP 로고 → 홈 · 우 프로필 → 마이페이지), 홈(검색 · 추천 상품 슬라이드 · 프로모션), 카테고리별·브랜드별 상품 목록, 상품 상세(핏 비교 · 트레이싱지 겹쳐 보기 · AI 비교 분석), 비교 결과, 마이페이지(등급 · 기준 옷 목록 · 메뉴), 기준 의류 등록, 공식 상품 페이지 이동. 하단 탭바는 쓰지 않는다.
+**발표까지 만든다 (MVP)**: 상단 헤더(좌 카테고리 메뉴 · 가운데 FIT MAP 로고 → 홈 · 우 프로필 → 마이페이지), 홈(검색 · 추천 상품 슬라이드 · 프로모션), 카테고리별·브랜드별 상품 목록, 상품 상세(핏 비교 · 트레이싱지 겹쳐 보기 · AI 비교 분석), 비교 결과, 마이페이지(등급 · 기준 옷 목록 · 찜 · 최근 본 상품 · 설정), 기준 의류 등록, 공식 상품 페이지 이동. 하단 탭바는 쓰지 않는다.
 
 **시간이 남으면**: 비교함, 측정 가이드 그림, 실제 브랜드 프로모션(제휴 확인 후), 등급 기준 확정.
 
@@ -18,7 +18,7 @@
 
 - Next.js (App Router) + TypeScript + Tailwind CSS
 - 데이터: `data/*.json` 파일 (DB 없음)
-- 기준 옷 저장: 브라우저 localStorage (`src/lib/storage.ts`에서만 접근)
+- 기준 옷 · 찜 · 최근 본 상품 저장: 브라우저 localStorage (`src/lib/storage.ts`에서만 접근)
 - AI: Next.js API Route `src/app/api/opinion/route.ts`에서 Claude API 호출
 - 배포: GitHub → Vercel 자동 배포
 
@@ -35,10 +35,15 @@ src/
     brands/[brandId]/page.tsx   # 브랜드별 상품 목록
     products/[productId]/page.tsx  # 상품 상세: 핏 비교 · 트레이싱지 겹쳐 보기 · AI 비교 분석
     compare/[productId]/page.tsx   # 비교 결과(사이즈 바꿔 보기)
-    mypage/page.tsx             # 마이페이지: 등급 · 기준 옷 목록 · 메뉴
+    mypage/page.tsx             # 마이페이지: 등급 · 기준 옷 목록 · 메뉴(새 기준 옷 등록, 찜, 최근 본 상품, 설정)
+    mypage/likes/page.tsx       # 찜
+    mypage/recent/page.tsx      # 최근 본 상품
     register/page.tsx           # 기준 의류 등록
-    settings/page.tsx           # 측정 가이드 · 서비스 안내
-    basket/page.tsx             # 비교함(준비 중)
+    settings/page.tsx           # 설정 메뉴: 측정 가이드 · 서비스 안내 · 문의 · 로그아웃(준비 중)
+    settings/guide/page.tsx     # 측정 가이드
+    settings/about/page.tsx     # 서비스 안내
+    settings/contact/page.tsx   # 문의(준비 중)
+    basket/page.tsx             # 비교함(준비 중, 메뉴에서는 빠짐)
     closet/page.tsx             # 예전 주소 → /mypage 로 이동만 함
     api/opinion/route.ts        # AI 종합 의견
   components/

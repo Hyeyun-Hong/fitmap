@@ -1,42 +1,24 @@
 "use client";
 import Link from "next/link";
 import Header from "@/components/Header";
-import { removeReference, setPrimary, useReferences } from "@/lib/storage";
+import { removeReference, setPrimary, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { gradeOf } from "@/lib/grade";
 import { CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
 import type { Category } from "@/types/fitmap";
 
-const MENU: { title: string; items: { label: string; href: string; note?: string }[] }[] = [
-  {
-    title: "나의 핏",
-    items: [
-      { label: "기준 옷 등록", href: "/register" },
-      { label: "비교함", href: "/basket", note: "준비 중" },
-    ],
-  },
-  {
-    title: "쇼핑",
-    items: [
-      { label: "상의", href: "/category/top" },
-      { label: "하의", href: "/category/bottom" },
-      { label: "아우터", href: "/category/outer" },
-      { label: "브랜드 전체", href: "/brands" },
-    ],
-  },
-  {
-    title: "안내",
-    items: [
-      { label: "측정 가이드", href: "/settings" },
-      { label: "서비스 안내", href: "/settings" },
-    ],
-  },
-];
-
 export default function MyPage() {
   const refs = useReferences();
   const grade = gradeOf(refs ?? []);
+  const likes = useLikes();
+  const recent = useRecent();
+  const menu = [
+    { label: "새 기준 옷 등록", href: "/register", note: "" },
+    { label: "찜", href: "/mypage/likes", note: likes ? String(likes.length) : "" },
+    { label: "최근 본 상품", href: "/mypage/recent", note: recent ? String(recent.length) : "" },
+    { label: "설정", href: "/settings", note: "" },
+  ];
 
   return (
     <main className="flex-1">
@@ -110,21 +92,18 @@ export default function MyPage() {
           </div>
         </section>
 
-        {MENU.map((g) => (
-          <section key={g.title}>
-            <h2 className="mb-1 text-xs font-semibold text-neutral-400">{g.title}</h2>
-            <ul className="divide-y divide-neutral-100 border-y border-neutral-100">
-              {g.items.map((it) => (
-                <li key={it.label}>
-                  <Link href={it.href} className="flex items-center justify-between py-3.5 text-[15px]">
-                    <span>{it.label}</span>
-                    <span className="text-xs text-neutral-400">{it.note ?? "›"}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        <ul className="divide-y divide-neutral-100 border-y border-neutral-100">
+          {menu.map((it) => (
+            <li key={it.href}>
+              <Link href={it.href} className="flex items-center justify-between py-4 text-[15px]">
+                <span>{it.label}</span>
+                <span className="flex items-center gap-2 text-sm text-neutral-400">
+                  {it.note ? <span className="font-semibold text-neutral-900">{it.note}</span> : null}›
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </main>
   );

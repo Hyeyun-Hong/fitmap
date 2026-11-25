@@ -10,6 +10,8 @@ import ProductImage from "@/components/ProductImage";
 import RefPicker from "@/components/RefPicker";
 import DiffList from "@/components/DiffList";
 import FitOverlay from "@/components/FitOverlay";
+import LikeButton from "@/components/LikeButton";
+import RecentTracker from "@/components/RecentTracker";
 import ReviewCard from "@/components/ReviewCard";
 import OpinionCard from "@/components/OpinionCard";
 import { simText } from "@/components/SimilarityBadge";
@@ -28,7 +30,11 @@ export default function ProductDetail({ product, review }: { product: Product; r
 
   return (
     <div className="space-y-5 px-5 py-5">
-      <ProductImage label="상품 이미지는 공식 페이지에서 확인해 주세요" className="aspect-square w-full" />
+      <RecentTracker productId={product.id} />
+      <div className="relative">
+        <ProductImage label="상품 이미지는 공식 페이지에서 확인해 주세요" className="aspect-square w-full" />
+        <LikeButton productId={product.id} className="absolute bottom-3 right-3" />
+      </div>
 
       <section>
         <p className="text-xs text-neutral-500">
