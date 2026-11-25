@@ -4,7 +4,7 @@ export default function ReviewCard({ review }: { review: ReviewSummary | null })
   if (!review) {
     return (
       <section className="rounded-xl border border-dashed border-neutral-300 p-4">
-        <h3 className="text-sm font-bold">AI 리뷰 분석</h3>
+        <h3 className="text-sm font-bold">리뷰 분석</h3>
         <p className="mt-1 text-sm text-neutral-500">이 상품의 리뷰 분석을 준비하고 있어요.</p>
       </section>
     );
@@ -12,7 +12,7 @@ export default function ReviewCard({ review }: { review: ReviewSummary | null })
   return (
     <section className="space-y-3 rounded-xl border border-neutral-200 p-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-bold">AI 리뷰 분석</h3>
+        <h3 className="text-sm font-bold">리뷰 분석</h3>
         <span className="text-[11px] text-neutral-400">
           리뷰 {review.reviewCount}개 · 신뢰도 {review.confidence}
         </span>

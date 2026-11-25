@@ -33,3 +33,18 @@ export const SUB_LABEL: Record<SubCategory, string> = {
 };
 
 export const won = (n: number | null) => (n === null ? "-" : `${n.toLocaleString("ko-KR")}원`);
+
+/** 카테고리 메뉴 주소(/category/[slug])와 상품 필터 */
+export const CATEGORY_SLUGS: Record<string, { label: string; match: (p: Product) => boolean; group: Category | "outer" }> = {
+  top: { label: "상의 전체", match: (p) => p.category === "top" && p.subCategory !== "outer", group: "top" },
+  tshirt: { label: "티셔츠", match: (p) => p.subCategory === "tshirt", group: "top" },
+  shirt: { label: "셔츠", match: (p) => p.subCategory === "shirt", group: "top" },
+  knit: { label: "니트", match: (p) => p.subCategory === "knit", group: "top" },
+  sweat: { label: "스웨트·플리스", match: (p) => p.subCategory === "sweat", group: "top" },
+  bottom: { label: "하의 전체", match: (p) => p.category === "bottom", group: "bottom" },
+  denim: { label: "데님", match: (p) => p.subCategory === "denim", group: "bottom" },
+  slacks: { label: "슬랙스", match: (p) => p.subCategory === "slacks", group: "bottom" },
+  cotton: { label: "코튼", match: (p) => p.subCategory === "cotton", group: "bottom" },
+  jogger: { label: "조거", match: (p) => p.subCategory === "jogger", group: "bottom" },
+  outer: { label: "아우터 전체", match: (p) => p.subCategory === "outer", group: "outer" },
+};

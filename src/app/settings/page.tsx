@@ -17,7 +17,7 @@ const BOTTOM = [
 export default function SettingsPage() {
   return (
     <main className="flex-1">
-      <Header title="측정 가이드 · 서비스 안내" back="/closet" />
+      <Header title="측정 가이드 · 서비스 안내" back="/mypage" />
       <div className="space-y-6 px-5 py-5 text-sm">
         <p className="text-neutral-600">옷을 바닥에 평평하게 펼치고 줄자로 재요. 단위는 cm예요.</p>
         {[

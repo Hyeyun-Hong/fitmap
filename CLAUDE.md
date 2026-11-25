@@ -8,9 +8,9 @@
 
 ## 범위
 
-**발표까지 만든다 (MVP)**: 기준 의류 등록(직접 입력), 브랜드 목록(상의/하의 탭), 브랜드별 상품 목록, 상품 상세 & 핏 분석, 비교 결과, AI 리뷰 분석(사전 생성 데이터 표시), AI 종합 의견(실시간), 공식 상품 페이지 이동.
+**발표까지 만든다 (MVP)**: 상단 헤더(좌 카테고리 메뉴 · 가운데 FIT MAP 로고 → 홈 · 우 프로필 → 마이페이지), 홈(검색 · 추천 상품 슬라이드 · 프로모션), 카테고리별·브랜드별 상품 목록, 상품 상세(핏 비교 · 트레이싱지 겹쳐 보기 · AI 비교 분석), 비교 결과, 마이페이지(등급 · 기준 옷 목록 · 메뉴), 기준 의류 등록, 공식 상품 페이지 이동. 하단 탭바는 쓰지 않는다.
 
-**시간이 남으면**: 홈 추천 상품, 'FIT MAP 상품에서 찾기' 자동 입력, 사이즈 바꿔 보기, 측정 가이드 그림, 내 옷장.
+**시간이 남으면**: 비교함, 측정 가이드 그림, 실제 브랜드 프로모션(제휴 확인 후), 등급 기준 확정.
 
 **만들지 않는다**: 로그인·회원가입(비회원 + localStorage로 대체), 데이터베이스, 크롤링·실시간 수집, 결제, 무신사 할인 탐지·코디 추천 등 이전 기획 기능.
 
@@ -27,22 +27,32 @@
 ```
 src/
   app/
-    page.tsx                    # 홈
-    onboarding/page.tsx         # 온보딩
-    register/page.tsx           # 기준 의류 등록
-    brands/page.tsx             # 브랜드 목록 (?category=top|bottom)
+    layout.tsx                  # 공통 상단 헤더(AppHeader) 포함
+    page.tsx                    # 홈: 검색창 · 추천 상품 슬라이드 · 프로모션
+    search/page.tsx             # 검색
+    category/[slug]/page.tsx    # 카테고리별 상품 (top, tshirt, bottom, denim, outer …)
+    brands/page.tsx             # 브랜드 전체
     brands/[brandId]/page.tsx   # 브랜드별 상품 목록
-    products/[productId]/page.tsx  # 상품 상세 & 핏 분석
-    compare/[productId]/page.tsx   # 비교 결과
-    closet/page.tsx             # 내 옷장
-    settings/page.tsx           # 설정·서비스 안내
+    products/[productId]/page.tsx  # 상품 상세: 핏 비교 · 트레이싱지 겹쳐 보기 · AI 비교 분석
+    compare/[productId]/page.tsx   # 비교 결과(사이즈 바꿔 보기)
+    mypage/page.tsx             # 마이페이지: 등급 · 기준 옷 목록 · 메뉴
+    register/page.tsx           # 기준 의류 등록
+    settings/page.tsx           # 측정 가이드 · 서비스 안내
+    basket/page.tsx             # 비교함(준비 중)
+    closet/page.tsx             # 예전 주소 → /mypage 로 이동만 함
     api/opinion/route.ts        # AI 종합 의견
-  components/                   # 공통 UI 컴포넌트
+  components/
+    AppHeader.tsx, CategoryDrawer.tsx  # 상단 헤더, 왼쪽 카테고리 메뉴
+    ProductCard.tsx             # 상품 카드(슬라이드·목록 공용)
+    FitOverlay.tsx              # 트레이싱지 겹쳐 보기(그림만, 계산은 fit.ts)
+    …                           # 그 밖의 공통 UI
   lib/
     fit.ts                      # 실측 비교 계산 (수정 시 테스트 필수)
+    useSimilarity.ts            # 상품 목록에 유사도 붙이기(fit.ts 호출)
+    grade.ts                    # 마이페이지 등급(시안)
     prompts.ts                  # AI 프롬프트, 고정 문장
     storage.ts                  # localStorage 접근
-    data.ts                     # JSON 데이터 읽기
+    data.ts                     # JSON 데이터 읽기, 카테고리 주소 정의(CATEGORY_SLUGS)
   types/
     fitmap.ts                   # 공통 타입 (팀 공유)
 data/
@@ -88,12 +98,13 @@ data/
 - "핏 정확도"가 아니라 **"핏 유사도"**. "딱 맞아요", "보장" 같은 단정 표현 금지.
 - 비교 결과 화면에는 항상 한 줄 안내를 둔다: "실측이 비슷해도 소재와 신축성에 따라 착용감은 다를 수 있어요."
 - 상품 상세에 실측 출처(공식 페이지 링크)와 확인일을 보여준다.
+- 프로모션 영역에 실제 브랜드 할인·기획전을 지어내 넣지 않는다. 제휴가 확인되기 전에는 서비스 안내나 빈 자리로 둔다.
 - 비교할 수 없는 항목은 숨기지 말고 "비교 불가"로 표시한다.
 
 ## Git·브랜치 규칙
 
 - `main`은 배포 브랜치다. 직접 push하지 않고 PR로만 병합한다.
-- 브랜치 이름: `feat/data`, `feat/register`, `feat/catalog`, `feat/compare`처럼 기능 단위로.
+- 브랜치 이름: `feat/home`, `feat/product`처럼 기능 단위로.
 - PR을 올리면 Vercel 미리보기 URL에서 화면을 확인한 뒤 다른 팀원 1명이 승인하고 병합한다.
 - 병합 전에 `main`을 받아 충돌을 먼저 해결한다. `src/types/fitmap.ts`, `src/lib/fit.ts`, `CLAUDE.md`를 고친 PR은 팀에 알린다.
 - 커밋 메시지는 한국어로 무엇을 했는지 한 줄. 예: `상품 상세에 사이즈별 실측표 추가`

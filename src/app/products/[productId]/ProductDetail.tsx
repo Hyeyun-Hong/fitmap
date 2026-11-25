@@ -9,6 +9,7 @@ import { CATEGORY_LABEL, SUB_LABEL, won } from "@/lib/data";
 import ProductImage from "@/components/ProductImage";
 import RefPicker from "@/components/RefPicker";
 import DiffList from "@/components/DiffList";
+import FitOverlay from "@/components/FitOverlay";
 import ReviewCard from "@/components/ReviewCard";
 import OpinionCard from "@/components/OpinionCard";
 import { simText } from "@/components/SimilarityBadge";
@@ -48,7 +49,7 @@ export default function ProductDetail({ product, review }: { product: Product; r
       </section>
 
       <section className="space-y-4 rounded-xl bg-neutral-50 p-4">
-        <h3 className="text-sm font-bold">핏 분석</h3>
+        <h3 className="text-sm font-bold">핏 비교</h3>
         {refs === null ? null : (
           <RefPicker refs={sameCat} value={reference?.id ?? ""} onChange={setPicked} categoryLabel={CATEGORY_LABEL[product.category]} />
         )}
@@ -66,6 +67,9 @@ export default function ProductDetail({ product, review }: { product: Product; r
                 </div>
               </div>
             ) : null}
+            {best ? (
+              <FitOverlay category={product.category} diffs={best.diffs} sizeLabel={best.sizeLabel} lengthBasis={product.measurementBasis?.length} refLengthBasis={reference?.measurementBasis?.length} />
+            ) : null}
             {best ? <DiffList diffs={best.diffs} /> : null}
             {result.warnings.map((w) => (
               <p key={w} className="text-xs text-amber-700">
@@ -78,11 +82,13 @@ export default function ProductDetail({ product, review }: { product: Product; r
         {product.sizes.length === 0 ? <p className="text-sm text-neutral-500">공식 페이지에서 실측 정보를 확인하지 못한 상품이에요.</p> : null}
       </section>
 
-      {reference && result && result.recommendedSize ? (
-        <OpinionCard reference={reference} product={product} result={result} review={review} />
-      ) : null}
-
-      <ReviewCard review={review} />
+      <section className="space-y-3">
+        <h3 className="text-sm font-bold">AI 비교 분석</h3>
+        {reference && result && result.recommendedSize ? (
+          <OpinionCard reference={reference} product={product} result={result} review={review} />
+        ) : null}
+        <ReviewCard review={review} />
+      </section>
 
       {product.sizes.length > 0 ? (
         <section>

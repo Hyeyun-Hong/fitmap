@@ -124,12 +124,12 @@ export default function RegisterPage() {
       measurementBasis: basis,
       inputMethod: method,
     });
-    router.push("/");
+    router.push("/mypage");
   };
 
   return (
     <main className="flex-1">
-      <Header title="기준 옷 등록" back="/" />
+      <Header title="기준 옷 등록" back="/mypage" />
       <div className="space-y-6 px-5 py-5">
         <p className="text-sm text-neutral-500">입어보고 핏이 마음에 들었던 옷을 등록해 주세요. 이 옷의 실측이 비교 기준이 돼요.</p>
 

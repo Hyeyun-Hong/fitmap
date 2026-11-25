@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import BottomNav from "@/components/BottomNav";
+import AppHeader from "@/components/AppHeader";
+import { brands, products } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "FIT MAP",
@@ -9,12 +10,16 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
+const drawerBrands = brands.map((b) => ({ id: b.id, name: b.name, count: products.filter((p) => p.brandId === b.id).length }));
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ko" className="h-full antialiased">
       <body className="min-h-full bg-neutral-100 text-neutral-900">
-        <div className="mx-auto flex min-h-screen max-w-md flex-col bg-white pb-20 shadow-sm">{children}</div>
-        <BottomNav />
+        <div className="mx-auto flex min-h-screen max-w-md flex-col bg-white pb-10 shadow-sm">
+          <AppHeader brands={drawerBrands} />
+          {children}
+        </div>
       </body>
     </html>
   );
