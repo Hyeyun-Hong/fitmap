@@ -16,15 +16,17 @@ export default function HomeClient() {
   const { refs, scored } = useScored(products);
   const hasRef = (refs ?? []).length > 0;
 
+  // 기준 옷이 있으면 유사도 순, 없으면 실측이 있는 상품을 데이터 순서대로 보여준다
   const picks = useMemo(
-    () => scored.filter((s) => s.similarity !== null).sort(bySimilarity).slice(0, MAX_PICKS),
-    [scored],
+    () =>
+      hasRef
+        ? scored.filter((s) => s.similarity !== null).sort(bySimilarity).slice(0, MAX_PICKS)
+        : scored.filter((s) => s.product.measurementStatus !== "none").slice(0, MAX_PICKS),
+    [scored, hasRef],
   );
 
   // 서버 렌더링 중에는 자리만 잡아 둔다
   if (refs === null) return <div className="h-[30rem]" aria-hidden />;
-
-  if (!hasRef) return <RegisterGuide />;
 
   if (picks.length === 0) {
     return (
@@ -34,29 +36,16 @@ export default function HomeClient() {
     );
   }
 
-  return <HeroCarousel items={picks} />;
-}
-
-/** 기준 옷이 없을 때 슬라이드 대신 보여주는 안내 */
-function RegisterGuide() {
-  return (
-    <section className="px-5 pt-4">
-      <Link href="/register" className="block rounded-2xl bg-neutral-900 p-5 text-white">
-        <p className="text-xs text-neutral-400">FIT MAP 시작하기</p>
-        <p className="mt-1 text-lg font-bold leading-snug">아끼는 옷 한 벌이면 충분해요</p>
-        <p className="mt-1 text-sm text-neutral-300">핏이 마음에 들었던 옷을 등록하면 다른 브랜드 옷과 비교해 드려요.</p>
-        <span className="mt-4 inline-block rounded-lg bg-white px-3 py-2 text-xs font-bold text-neutral-900">기준 옷 등록하기</span>
-      </Link>
-    </section>
-  );
+  return <HeroCarousel items={picks} hasRef={hasRef} />;
 }
 
 /**
  * 추천 상품 큰 이미지 슬라이드.
  * 가운데 상품이 크게 보이고 양옆 상품이 살짝 보인다. CSS scroll-snap + 자동 넘김.
  * 상품 이름과 핏 유사도는 가운데 상품 기준으로 이미지 아래에 한 줄로 보여준다.
+ * 기준 옷이 없으면 유사도 대신 등록 안내 문구를 고정으로 보여준다.
  */
-function HeroCarousel({ items }: { items: Scored[] }) {
+function HeroCarousel({ items, hasRef }: { items: Scored[]; hasRef: boolean }) {
   const listRef = useRef<HTMLUListElement>(null);
   const pausedUntil = useRef(0);
   const [active, setActive] = useState(0);
@@ -137,11 +126,13 @@ function HeroCarousel({ items }: { items: Scored[] }) {
         <p className="truncate text-sm">
           <span className="font-bold">{cur.product.brandName}</span> {cur.product.name}
         </p>
-        <p className="mt-0.5 text-xs text-neutral-500">
-          내 기준 옷 대비 핏 유사도{" "}
-          <span className={`text-sm font-bold ${simText(cur.similarity)}`}>{cur.similarity}%</span>
-          {cur.size ? ` (${cur.size} 사이즈)` : ""}
-        </p>
+        {hasRef ? (
+          <p className="mt-0.5 text-xs text-neutral-500">
+            내 기준 옷 대비 핏 유사도{" "}
+            <span className={`text-sm font-bold ${simText(cur.similarity)}`}>{cur.similarity}%</span>
+            {cur.size ? ` (${cur.size} 사이즈)` : ""}
+          </p>
+        ) : null}
       </Link>
 
       {items.length > 1 ? (
@@ -163,6 +154,16 @@ function HeroCarousel({ items }: { items: Scored[] }) {
             </button>
           ))}
         </div>
+      ) : null}
+
+      {/* 기준 옷이 없을 때 고정 안내. 슬라이드가 넘어가도 바뀌지 않는다 */}
+      {!hasRef ? (
+        <p className="mt-2 px-5 text-center text-xs text-neutral-400">
+          기준 옷을 등록하면 핏 유사도를 보여 드려요.{" "}
+          <Link href="/register" className="font-semibold text-neutral-700 underline underline-offset-2">
+            등록하기
+          </Link>
+        </p>
       ) : null}
     </section>
   );
