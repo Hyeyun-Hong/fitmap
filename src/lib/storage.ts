@@ -33,6 +33,32 @@ export function addReference(ref: Omit<ReferenceGarment, "id" | "createdAt" | "i
   return item;
 }
 
+export function getReference(id: string): ReferenceGarment | null {
+  return read().find((r) => r.id === id) ?? null;
+}
+
+/**
+ * 기준 옷 수정. 같은 id 항목을 덮어쓴다(새 항목을 만들지 않음).
+ * id · createdAt · isPrimary · category는 기존 값을 유지한다. 대상이 없으면 null
+ */
+export function updateReference(
+  id: string,
+  patch: Omit<ReferenceGarment, "id" | "createdAt" | "isPrimary" | "category">,
+): ReferenceGarment | null {
+  const list = read();
+  const target = list.find((r) => r.id === id);
+  if (!target) return null;
+  const item: ReferenceGarment = {
+    ...patch,
+    id: target.id,
+    createdAt: target.createdAt,
+    isPrimary: target.isPrimary,
+    category: target.category,
+  };
+  write(list.map((r) => (r.id === id ? item : r)));
+  return item;
+}
+
 export function removeReference(id: string) {
   const list = read();
   const target = list.find((r) => r.id === id);

@@ -1,11 +1,12 @@
 "use client";
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import Header from "@/components/Header";
-import { addReference } from "@/lib/storage";
+import { addReference, updateReference, useReferences } from "@/lib/storage";
 import { products, CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
 import { partsOf } from "@/lib/fit";
-import type { Basis, Category, MeasurementBasis, Part, SubCategory } from "@/types/fitmap";
+import type { Basis, Category, MeasurementBasis, Part, ReferenceGarment, SubCategory } from "@/types/fitmap";
 
 const PART_NAME: Record<Category, Partial<Record<Part, string>>> = {
   top: { shoulder: "어깨너비", chest: "가슴", length: "총장", sleeve: "소매" },
@@ -64,16 +65,58 @@ const SUBS: Record<Category, SubCategory[]> = {
   bottom: ["denim", "slacks", "cotton", "jogger", "etc"],
 };
 
+// /register → 새로 등록, /register?edit=<기준 옷 id> → 같은 폼으로 수정
 export default function RegisterPage() {
+  return (
+    <Suspense fallback={null}>
+      <RegisterRoute />
+    </Suspense>
+  );
+}
+
+function RegisterRoute() {
+  const editId = useSearchParams().get("edit");
+  const refs = useReferences();
+  if (!editId) return <RegisterForm />;
+  if (refs === null) return null;
+  const target = refs.find((r) => r.id === editId);
+  if (!target) {
+    return (
+      <main className="flex-1">
+        <Header title="기준 옷 수정" back="/mypage" />
+        <div className="px-5 py-16 text-center">
+          <p className="text-sm text-neutral-500">수정할 기준 옷을 찾지 못했어요.</p>
+          <Link href="/mypage" className="mt-4 inline-block rounded-lg border border-neutral-300 px-4 py-2 text-sm">
+            마이페이지로 가기
+          </Link>
+        </div>
+      </main>
+    );
+  }
+  return <RegisterForm key={target.id} initial={target} />;
+}
+
+const toInputs = (r: ReferenceGarment) => {
+  const v: Partial<Record<Part, string>> = {};
+  for (const part of partsOf(r.category)) {
+    const n = r.measurements[part];
+    if (n !== null && n !== undefined) v[part] = String(n);
+  }
+  return v;
+};
+
+/** 등록·수정 공용 폼. initial이 있으면 수정 모드 */
+function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
   const router = useRouter();
-  const [category, setCategory] = useState<Category>("top");
-  const [subCategory, setSubCategory] = useState<SubCategory>("tshirt");
-  const [name, setName] = useState("");
-  const [brandName, setBrandName] = useState("");
-  const [size, setSize] = useState("");
-  const [values, setValues] = useState<Partial<Record<Part, string>>>({});
-  const [basis, setBasis] = useState<MeasurementBasis>({});
-  const [method, setMethod] = useState<"manual" | "from_product">("manual");
+  const editing = Boolean(initial);
+  const [category, setCategory] = useState<Category>(initial?.category ?? "top");
+  const [subCategory, setSubCategory] = useState<SubCategory>(initial?.subCategory ?? "tshirt");
+  const [name, setName] = useState(initial?.name ?? "");
+  const [brandName, setBrandName] = useState(initial?.brandName ?? "");
+  const [size, setSize] = useState(initial?.size ?? "");
+  const [values, setValues] = useState<Partial<Record<Part, string>>>(() => (initial ? toInputs(initial) : {}));
+  const [basis, setBasis] = useState<MeasurementBasis>(initial?.measurementBasis ?? {});
+  const [method, setMethod] = useState<"manual" | "from_product">(initial?.inputMethod ?? "manual");
   const [pickId, setPickId] = useState("");
   const [error, setError] = useState("");
 
@@ -81,6 +124,8 @@ export default function RegisterPage() {
   const picked = candidates.find((p) => p.id === pickId);
 
   const switchCategory = (c: Category) => {
+    // 수정 중에는 상의/하의를 바꾸지 않는다(대표 지정이 카테고리별이라서)
+    if (editing || c === category) return;
     setCategory(c);
     setSubCategory(SUBS[c][0]);
     setValues({});
@@ -114,35 +159,48 @@ export default function RegisterPage() {
     }
     if (!name.trim()) return setError("옷 이름을 적어 주세요.");
     if (Object.keys(measurements).length < 2) return setError("실측을 2개 항목 이상 입력해 주세요.");
-    addReference({
+    const fields = {
       name: name.trim(),
       brandName: brandName.trim() || undefined,
-      category,
       subCategory,
       size: size.trim() || undefined,
+      officialUrl: initial?.officialUrl,
       measurements,
       measurementBasis: basis,
       inputMethod: method,
-    });
+    };
+    if (initial) {
+      if (!updateReference(initial.id, fields)) return setError("수정할 기준 옷을 찾지 못했어요.");
+    } else {
+      addReference({ ...fields, category });
+    }
     router.push("/mypage");
   };
 
   return (
     <main className="flex-1">
-      <Header title="기준 옷 등록" back="/mypage" />
+      <Header title={editing ? "기준 옷 수정" : "기준 옷 등록"} back="/mypage" />
       <div className="space-y-6 px-5 py-5">
-        <p className="text-sm text-neutral-500">입어보고 핏이 마음에 들었던 옷을 등록해 주세요. 이 옷의 실측이 비교 기준이 돼요.</p>
+        <p className="text-sm text-neutral-500">
+          {editing
+            ? "저장된 실측을 고쳐 주세요. 저장하면 비교 결과와 추천이 새 실측으로 다시 계산돼요."
+            : "입어보고 핏이 마음에 들었던 옷을 등록해 주세요. 이 옷의 실측이 비교 기준이 돼요."}
+        </p>
 
-        <div className="grid grid-cols-2 gap-2">
-          {(["top", "bottom"] as Category[]).map((c) => (
-            <button
-              key={c}
-              onClick={() => switchCategory(c)}
-              className={`rounded-lg border py-3 text-sm font-bold ${category === c ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200"}`}
-            >
-              {CATEGORY_LABEL[c]}
-            </button>
-          ))}
+        <div>
+          <div className="grid grid-cols-2 gap-2">
+            {(["top", "bottom"] as Category[]).map((c) => (
+              <button
+                key={c}
+                onClick={() => switchCategory(c)}
+                disabled={editing && category !== c}
+                className={`rounded-lg border py-3 text-sm font-bold disabled:text-neutral-300 ${category === c ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200"}`}
+              >
+                {CATEGORY_LABEL[c]}
+              </button>
+            ))}
+          </div>
+          {editing ? <p className="mt-2 text-xs text-neutral-400">수정할 때는 상의/하의를 바꿀 수 없어요. 바꾸려면 새로 등록해 주세요.</p> : null}
         </div>
 
         <section className="rounded-xl bg-neutral-50 p-4">
@@ -226,7 +284,7 @@ export default function RegisterPage() {
 
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
         <button onClick={save} className="w-full rounded-xl bg-neutral-900 py-4 font-bold text-white">
-          등록 완료
+          {editing ? "수정 완료" : "등록 완료"}
         </button>
       </div>
     </main>
