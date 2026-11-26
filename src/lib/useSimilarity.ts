@@ -1,6 +1,7 @@
 "use client";
 import { useMemo } from "react";
-import type { Product } from "../types/fitmap";
+import type { ListSort, Product } from "../types/fitmap";
+import { displayPrice } from "./data";
 import { compareProduct } from "./fit";
 import { primaryOf, useReferences } from "./storage";
 
@@ -24,3 +25,18 @@ export function useScored(items: Product[]): { refs: ReturnType<typeof useRefere
 }
 
 export const bySimilarity = (a: Scored, b: Scored) => (b.similarity ?? -1) - (a.similarity ?? -1);
+
+/** 목록 정렬. 가격순에서 가격이 없는 상품은 맨 뒤, 가격이 같으면 유사도 높은 순 */
+export function sortScored(list: Scored[], sort: ListSort): Scored[] {
+  const base = [...list].sort(bySimilarity);
+  if (sort === "default") return base;
+  const dir = sort === "price_asc" ? 1 : -1;
+  return base.sort((a, b) => {
+    const pa = displayPrice(a.product);
+    const pb = displayPrice(b.product);
+    if (pa === null && pb === null) return 0;
+    if (pa === null) return 1;
+    if (pb === null) return -1;
+    return (pa - pb) * dir;
+  });
+}

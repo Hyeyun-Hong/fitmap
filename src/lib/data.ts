@@ -32,6 +32,9 @@ export const SUB_LABEL: Record<SubCategory, string> = {
   etc: "기타",
 };
 
+/** 화면에 보여주고 정렬에 쓰는 가격: 할인가가 있으면 할인가, 없으면 정가. 둘 다 없으면 null */
+export const displayPrice = (p: Product) => p.price.sale ?? p.price.regular ?? null;
+
 export const won = (n: number | null) => (n === null ? "-" : `${n.toLocaleString("ko-KR")}원`);
 
 /** 카테고리 메뉴 주소(/category/[slug])와 상품 필터 */

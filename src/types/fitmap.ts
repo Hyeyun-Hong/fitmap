@@ -123,6 +123,11 @@ export interface ReferenceGarment {
   createdAt: string;
 }
 
+// ---------- 상품 목록 ----------
+
+/** 상품 목록 정렬: 기본순(핏 유사도 높은 순) / 낮은 가격순 / 높은 가격순 */
+export type ListSort = "default" | "price_asc" | "price_desc";
+
 // ---------- 비교 결과 ----------
 
 export type DiffStatus =
