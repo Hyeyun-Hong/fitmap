@@ -100,9 +100,27 @@ function writeIds(key: string, ids: string[]) {
   window.dispatchEvent(new Event(LIST_EVT));
 }
 
+/** 찜한 상품 ID 목록(최근 찜한 순) */
+export const getLikes = (): string[] => readIds(LIKES);
+
+export const isLiked = (productId: string) => getLikes().includes(productId);
+
+/** 찜 추가. 이미 있으면 그대로 둔다 */
+export function addLike(productId: string) {
+  const ids = getLikes();
+  if (ids.includes(productId)) return;
+  writeIds(LIKES, [productId, ...ids]);
+}
+
+export function removeLike(productId: string) {
+  const ids = getLikes();
+  if (!ids.includes(productId)) return;
+  writeIds(LIKES, ids.filter((x) => x !== productId));
+}
+
 export function toggleLike(productId: string) {
-  const ids = readIds(LIKES);
-  writeIds(LIKES, ids.includes(productId) ? ids.filter((x) => x !== productId) : [productId, ...ids]);
+  if (isLiked(productId)) removeLike(productId);
+  else addLike(productId);
 }
 
 /** 상품 상세를 열 때 호출. 가장 최근 본 상품이 맨 앞 */
