@@ -1,12 +1,16 @@
 "use client";
 import Link from "next/link";
 import Header from "@/components/Header";
+import SavedProducts from "@/components/SavedProducts";
 import { removeReference, setPrimary, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { gradeOf } from "@/lib/grade";
 import { CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
 import type { Category } from "@/types/fitmap";
+
+/** 마이페이지에 미리 보여줄 찜 상품 수 */
+const LIKE_PREVIEW = 4;
 
 export default function MyPage() {
   const refs = useReferences();
@@ -80,15 +84,40 @@ export default function MyPage() {
                             .map((p) => `${PART_LABEL[c][p]} ${r.measurements[p]}`)
                             .join(" · ")}
                         </p>
-                        <button onClick={() => removeReference(r.id)} className="mt-2 text-xs text-neutral-400 underline">
-                          삭제
-                        </button>
+                        <div className="mt-3 flex gap-2">
+                          <Link
+                            href={`/register?edit=${encodeURIComponent(r.id)}`}
+                            className="rounded-full border border-neutral-300 px-3 py-1 text-xs font-semibold"
+                          >
+                            수정
+                          </Link>
+                          <button onClick={() => removeReference(r.id)} className="rounded-full px-3 py-1 text-xs text-neutral-400 underline"
+                          >
+                            삭제
+                          </button>
+                        </div>
                       </li>
                     ))}
                   </ul>
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        <section>
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-bold">
+              찜한 상품 <span className="text-emerald-600">{likes?.length ?? 0}</span>
+            </h2>
+            {likes && likes.length > LIKE_PREVIEW ? (
+              <Link href="/mypage/likes" className="text-xs text-neutral-500">
+                전체 보기 ›
+              </Link>
+            ) : null}
+          </div>
+          <div className="-mx-5">
+            <SavedProducts ids={likes} limit={LIKE_PREVIEW} empty="찜한 상품이 없어요. 상품의 하트를 눌러 담아 보세요." />
           </div>
         </section>
 

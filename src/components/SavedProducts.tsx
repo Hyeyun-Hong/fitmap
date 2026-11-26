@@ -7,8 +7,12 @@ import type { Product } from "@/types/fitmap";
 import ProductCard from "./ProductCard";
 
 /** 찜·최근 본 상품처럼 상품 ID 목록을 카드로 보여준다. */
-export default function SavedProducts({ ids, empty }: { ids: string[] | null; empty: string }) {
-  const items = useMemo(() => (ids ?? []).map(getProduct).filter((p): p is Product => Boolean(p)), [ids]);
+/** limit: 앞에서부터 몇 개만 보여줄지(마이페이지 미리보기용). 없으면 전부 */
+export default function SavedProducts({ ids, empty, limit }: { ids: string[] | null; empty: string; limit?: number }) {
+  const items = useMemo(
+    () => (ids ?? []).map(getProduct).filter((p): p is Product => Boolean(p)).slice(0, limit),
+    [ids, limit],
+  );
   const { scored } = useScored(items);
   if (ids === null) return null;
   if (items.length === 0) {
