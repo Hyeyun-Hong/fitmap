@@ -14,6 +14,10 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
   if (!cat) notFound();
   const items = products.filter(cat.match);
   const siblings = Object.entries(CATEGORY_SLUGS).filter(([, c]) => c.group === cat.group);
+  const name = cat.label.replace(" 전체", "");
+  // 비어 있을 때 이동할 곳: 아우터 → 상의 전체, 하위 카테고리 → 같은 그룹 전체
+  const fallback = cat.group === "outer" || slug === cat.group ? "top" : cat.group;
+  const fallbackLabel = fallback === "top" && cat.group === "outer" ? "상의 보러 가기" : `${CATEGORY_SLUGS[fallback].label} 보기`;
   return (
     <main className="flex-1">
       <Header title={cat.label} />
@@ -31,7 +35,12 @@ export default async function CategoryPage({ params }: PageProps<"/category/[slu
         </div>
       ) : null}
       {items.length === 0 ? (
-        <p className="px-5 py-16 text-center text-sm text-neutral-500">아직 실측을 확인한 상품이 없어요.</p>
+        <div className="flex flex-col items-center px-5 py-16 text-center">
+          <p className="text-sm text-neutral-600">아직 등록된 {name} 상품이 없어요. 곧 추가할게요.</p>
+          <Link href={`/category/${fallback}`} className="mt-4 rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white">
+            {fallbackLabel}
+          </Link>
+        </div>
       ) : (
         <CategoryList items={items} />
       )}
