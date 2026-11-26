@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { useTrackNavigation } from "./BackButton";
 import CategoryDrawer, { type DrawerBrand } from "./CategoryDrawer";
 
 export default function AppHeader({ brands }: { brands: DrawerBrand[] }) {
   const [open, setOpen] = useState(false);
+  useTrackNavigation();
   return (
     <>
       <header className="sticky top-0 z-20 grid h-14 grid-cols-[48px_1fr_48px] items-center border-b border-neutral-100 bg-white px-2">
