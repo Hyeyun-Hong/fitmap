@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
+import BrandLikeButton from "@/components/BrandLikeButton";
 import ProductList from "./ProductList";
 import { brands, getBrand, productsByBrand } from "@/lib/data";
 
@@ -15,7 +16,7 @@ export default async function BrandPage({ params }: PageProps<"/brands/[brandId]
   const items = productsByBrand(brandId);
   return (
     <main className="flex-1">
-      <Header title={brand.name} back="/" />
+      <Header title={brand.name} back="/" action={<BrandLikeButton brandId={brand.id} className="h-9 w-9" />} />
       <div className="flex items-center justify-between px-5 pt-4 text-xs text-neutral-500">
         <span>상품 {items.length}개</span>
         <Link href={brand.officialUrl} target="_blank" rel="noopener noreferrer" className="underline">
