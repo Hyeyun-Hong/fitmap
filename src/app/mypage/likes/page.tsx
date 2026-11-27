@@ -111,6 +111,23 @@ function SavedBrands({ ids }: { ids: string[] | null }) {
           );
         })}
       </ul>
+      {editing ? (
+        <div className="py-4 text-center">
+          <button
+            type="button"
+            onClick={() => {
+              // 한 번에 다 지워지므로 한 번 더 묻는다
+              if (!window.confirm(`찜한 브랜드 ${items.length}개를 모두 삭제할까요?`)) return;
+              // 목록에 안 보이는 브랜드 ID(데이터에서 빠진 것)까지 같이 지운다
+              for (const id of [...(ids ?? [])]) removeBrandLike(id);
+              setEditing(false);
+            }}
+            className="text-xs text-neutral-400 underline"
+          >
+            전체 삭제
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
