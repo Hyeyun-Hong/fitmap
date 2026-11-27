@@ -68,6 +68,17 @@ export function buildOpinionInput(
 }
 
 /** API 실패나 키 미설정 시 보여줄 고정 문장 (AI 없이 계산 결과로 만든다) */
+/** 마지막 글자 받침에 맞춰 은/는을 붙인다 */
+export const eunNeun = (word: string) => {
+  const code = word.charCodeAt(word.length - 1);
+  if (code < 0xac00 || code > 0xd7a3) return "은(는)";
+  return (code - 0xac00) % 28 ? "은" : "는";
+};
+
+/** 유사도가 이보다 낮으면 "가장 비슷한 사이즈"라고만 말한다 */
+const LOW_SIMILARITY = 50;
+
+/** API 키가 없거나 호출이 실패했을 때 계산 결과만으로 만드는 종합 의견 */
 export function fallbackOpinion(result: ComparisonResult): AiOpinion {
   const rec = result.bySize.find((s) => s.sizeLabel === result.recommendedSize);
   if (!rec || rec.similarity === null) {
@@ -79,17 +90,42 @@ export function fallbackOpinion(result: ComparisonResult): AiOpinion {
       fallback: true,
     };
   }
-  const notable = rec.diffs
-    .filter((d) => d.diff !== null && d.status !== "same")
-    .map((d) => `${d.label} ${describeDiff(d)}`);
+
+  // "가슴단면은 4.5cm 크고, 소매길이는 27.3cm 작아요"처럼 이어 쓴다
+  const differ = rec.diffs.filter((d) => d.diff !== null && d.status !== "same");
+  const phrase = differ
+    .map((d, i) => {
+      const big = (d.diff as number) > 0;
+      const slight = d.status === "slightly_larger" || d.status === "slightly_smaller";
+      const last = i === differ.length - 1;
+      const verb = big ? (last ? "커요" : "크고") : last ? "작아요" : "작고";
+      return `${d.label}${eunNeun(d.label)} ${Math.abs(d.diff as number)}cm ${slight ? "약간 " : ""}${verb}`;
+    })
+    .join(", ");
+  const unknown = rec.diffs.filter((d) => d.diff === null).map((d) => d.label);
+  const unknownText = unknown.length ? ` ${unknown.join(", ")}${eunNeun(unknown.at(-1) as string)} 비교하지 못했어요.` : "";
+
+  const low = rec.similarity < LOW_SIMILARITY;
+  const lead = low
+    ? `어느 사이즈도 기준 옷과 차이가 큰 편이에요. 그중 ${rec.sizeLabel} 사이즈가 가장 비슷해요.`
+    : `${rec.sizeLabel} 사이즈가 기준 옷과 가장 비슷해요.`;
+  const body = differ.length === 0 ? " 비교한 항목은 모두 1cm 이내로 거의 같아요." : ` 기준 옷보다 ${phrase}.`;
+
+  // 차이가 가장 큰 부위를 짚어 준다(3cm 초과일 때만)
+  const biggest = [...differ].sort((a, b) => Math.abs(b.diff as number) - Math.abs(a.diff as number))[0];
+  const caution =
+    result.warnings[0] ??
+    (biggest && (biggest.status === "larger" || biggest.status === "smaller")
+      ? `${biggest.label} 차이가 가장 커요. 이 부분의 핏은 리뷰나 공식 사이즈표로 한 번 더 확인해 보세요.`
+      : unknown.length
+        ? "비교하지 못한 항목은 공식 페이지 사이즈표에서 직접 확인해 주세요."
+        : "실측이 비슷해도 소재와 신축성에 따라 착용감은 다를 수 있어요.");
+
   return {
-    headline: `${rec.sizeLabel} 사이즈 유사도 ${rec.similarity}%`,
-    opinion:
-      notable.length === 0
-        ? `${rec.sizeLabel} 사이즈가 기준 옷과 비교 가능한 항목 모두 1cm 이내로 비슷해요.`
-        : `${rec.sizeLabel} 사이즈가 기준 옷과 가장 비슷해요. 기준 옷보다 ${notable.join(", ")}이에요.`,
+    headline: low ? `가장 비슷한 사이즈 ${rec.sizeLabel}` : `${rec.sizeLabel} 사이즈 유사도 ${rec.similarity}%`,
+    opinion: lead + body + unknownText,
     recommendedSize: rec.sizeLabel,
-    caution: result.warnings[0] ?? "실측이 비슷해도 소재와 신축성에 따라 착용감은 다를 수 있어요.",
+    caution,
     fallback: true,
   };
 }
