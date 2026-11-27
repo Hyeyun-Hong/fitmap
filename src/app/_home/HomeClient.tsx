@@ -16,14 +16,20 @@ export default function HomeClient() {
   const { refs, scored } = useScored(products);
   const hasRef = (refs ?? []).length > 0;
 
-  // 기준 옷이 있으면 유사도 순, 없으면 실측이 있는 상품을 데이터 순서대로 보여준다
-  const picks = useMemo(
-    () =>
-      hasRef
-        ? scored.filter((s) => s.similarity !== null).sort(bySimilarity).slice(0, MAX_PICKS)
-        : scored.filter((s) => s.product.measurementStatus !== "none").slice(0, MAX_PICKS),
-    [scored, hasRef],
+  // 기준 옷으로 등록한 상품(상품에서 불러오기)은 추천에서 뺀다. 직접 입력한 기준 옷은 sourceProductId가 없어 해당 없음
+  const ownedIds = useMemo(
+    () => new Set((refs ?? []).map((r) => r.sourceProductId).filter((id): id is string => !!id)),
+    [refs],
   );
+
+  // 기준 옷이 있으면 유사도 순, 없으면 실측이 있는 상품을 데이터 순서대로 보여준다.
+  // 제외는 자르기 전에 해서 MAX_PICKS개를 채운다.
+  const picks = useMemo(() => {
+    const candidates = scored.filter((s) => !ownedIds.has(s.product.id));
+    return hasRef
+      ? candidates.filter((s) => s.similarity !== null).sort(bySimilarity).slice(0, MAX_PICKS)
+      : candidates.filter((s) => s.product.measurementStatus !== "none").slice(0, MAX_PICKS);
+  }, [scored, hasRef, ownedIds]);
 
   // 서버 렌더링 중에는 자리만 잡아 둔다
   if (refs === null) return <div className="h-[30rem]" aria-hidden />;
