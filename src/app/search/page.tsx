@@ -1,19 +1,17 @@
 "use client";
 import { useMemo, useState } from "react";
-import { products, SUB_LABEL, CATEGORY_LABEL } from "@/lib/data";
+import { products, matchesQuery, normalizeQuery } from "@/lib/data";
 import { bySimilarity, useScored } from "@/lib/useSimilarity";
 import ProductCard from "@/components/ProductCard";
 
 export default function SearchPage() {
   const [q, setQ] = useState("");
   const { scored } = useScored(products);
-  const query = q.trim().toLowerCase().replace(/\s+/g, "");
+  const query = normalizeQuery(q);
   const results = useMemo(() => {
     if (!query) return [];
     return scored
-      .filter(({ product: p }) =>
-        [p.brandName, p.name, SUB_LABEL[p.subCategory], CATEGORY_LABEL[p.category]].join("").toLowerCase().replace(/\s+/g, "").includes(query),
-      )
+      .filter(({ product: p }) => matchesQuery(p, query))
       .sort(bySimilarity);
   }, [scored, query]);
 

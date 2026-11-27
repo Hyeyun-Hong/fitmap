@@ -35,6 +35,16 @@ export const SUB_LABEL: Record<SubCategory, string> = {
 /** 화면에 보여주고 정렬에 쓰는 가격: 할인가가 있으면 할인가, 없으면 정가. 둘 다 없으면 null */
 export const displayPrice = (p: Product) => p.price.sale ?? p.price.regular ?? null;
 
+/** 사이즈별 실측이 있어 기준 옷으로 불러올 수 있는 상품인지 */
+export const hasMeasurements = (p: Product) => p.sizes.length > 0;
+
+/** 검색어 정리: 소문자로 바꾸고 공백을 없앤다 */
+export const normalizeQuery = (q: string) => q.trim().toLowerCase().replace(/\s+/g, "");
+
+/** 상품 검색(브랜드명·상품명·세부 카테고리·상의/하의). query는 normalizeQuery를 거친 값 */
+export const matchesQuery = (p: Product, query: string) =>
+  [p.brandName, p.name, SUB_LABEL[p.subCategory], CATEGORY_LABEL[p.category]].join("").toLowerCase().replace(/\s+/g, "").includes(query);
+
 export const won = (n: number | null) => (n === null ? "-" : `${n.toLocaleString("ko-KR")}원`);
 
 /** 카테고리 메뉴 주소(/category/[slug])와 상품 필터 */

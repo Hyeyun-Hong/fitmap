@@ -1,10 +1,10 @@
 "use client";
-import { Suspense, useMemo, useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import { addReference, updateReference, useReferences } from "@/lib/storage";
-import { products, CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
+import { getProduct, hasMeasurements, CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
 import { partsOf } from "@/lib/fit";
 import type { Basis, Category, MeasurementBasis, Part, ReferenceGarment, SubCategory } from "@/types/fitmap";
 
@@ -66,6 +66,7 @@ const SUBS: Record<Category, SubCategory[]> = {
 };
 
 // /register → 새로 등록, /register?edit=<기준 옷 id> → 같은 폼으로 수정
+// ?pick=<상품 id>: /register/select에서 고른 상품. 등록·수정 모두에 붙을 수 있다
 export default function RegisterPage() {
   return (
     <Suspense fallback={null}>
@@ -109,7 +110,10 @@ const toInputs = (r: ReferenceGarment) => {
 function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
   const router = useRouter();
   const editing = Boolean(initial);
-  const [category, setCategory] = useState<Category>(initial?.category ?? "top");
+  // 상품 선택 페이지에서 고른 상품. 없으면 수정 중인 옷을 불러왔던 상품
+  const pickParam = useSearchParams().get("pick");
+  const pickedFromUrl = pickParam ? getProduct(pickParam) : undefined;
+  const [category, setCategory] = useState<Category>(initial?.category ?? pickedFromUrl?.category ?? "top");
   const [subCategory, setSubCategory] = useState<SubCategory>(initial?.subCategory ?? "tshirt");
   const [name, setName] = useState(initial?.name ?? "");
   const [brandName, setBrandName] = useState(initial?.brandName ?? "");
@@ -117,11 +121,13 @@ function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
   const [values, setValues] = useState<Partial<Record<Part, string>>>(() => (initial ? toInputs(initial) : {}));
   const [basis, setBasis] = useState<MeasurementBasis>(initial?.measurementBasis ?? {});
   const [method, setMethod] = useState<"manual" | "from_product">(initial?.inputMethod ?? "manual");
-  const [pickId, setPickId] = useState("");
+  const [sourceId, setSourceId] = useState<string | undefined>(initial?.sourceProductId);
   const [error, setError] = useState("");
 
-  const candidates = useMemo(() => products.filter((p) => p.category === category && p.sizes.length > 0), [category]);
-  const picked = candidates.find((p) => p.id === pickId);
+  const pickCandidate = pickedFromUrl ?? (initial?.sourceProductId ? getProduct(initial.sourceProductId) : undefined);
+  // 다른 카테고리이거나 실측이 없는 상품은 불러오지 않는다
+  const picked = pickCandidate && pickCandidate.category === category && hasMeasurements(pickCandidate) ? pickCandidate : undefined;
+  const selectHref = `/register/select?${new URLSearchParams({ category, ...(initial ? { edit: initial.id } : {}) })}`;
 
   const switchCategory = (c: Category) => {
     // 수정 중에는 상의/하의를 바꾸지 않는다(대표 지정이 카테고리별이라서)
@@ -130,7 +136,8 @@ function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
     setSubCategory(SUBS[c][0]);
     setValues({});
     setBasis({});
-    setPickId("");
+    setSourceId(undefined);
+    setMethod("manual");
   };
 
   const loadFromProduct = (label: string) => {
@@ -149,6 +156,7 @@ function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
     setSize(label);
     setSubCategory(picked.subCategory);
     setMethod("from_product");
+    setSourceId(picked.id);
   };
 
   const save = () => {
@@ -168,6 +176,7 @@ function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
       measurements,
       measurementBasis: basis,
       inputMethod: method,
+      sourceProductId: method === "from_product" ? sourceId : undefined,
     };
     if (initial) {
       if (!updateReference(initial.id, fields)) return setError("수정할 기준 옷을 찾지 못했어요.");
@@ -206,23 +215,30 @@ function RegisterForm({ initial }: { initial?: ReferenceGarment }) {
         <section className="rounded-xl bg-neutral-50 p-4">
           <p className="text-sm font-bold">FIT MAP 상품에서 불러오기</p>
           <p className="mt-1 text-xs text-neutral-500">가지고 있는 옷이 목록에 있으면 실측이 자동으로 채워져요.</p>
-          <select value={pickId} onChange={(e) => setPickId(e.target.value)} className="mt-3 w-full rounded-lg border border-neutral-200 bg-white p-2 text-sm">
-            <option value="">상품 선택</option>
-            {candidates.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.brandName} - {p.name}
-              </option>
-            ))}
-          </select>
           {picked ? (
-            <div className="mt-2 flex flex-wrap gap-2">
-              {picked.sizes.map((s) => (
-                <button key={s.label} onClick={() => loadFromProduct(s.label)} className="rounded-full border border-neutral-300 bg-white px-3 py-1 text-xs">
-                  {s.label}
-                </button>
-              ))}
+            <div className="mt-3 rounded-lg border border-neutral-200 bg-white p-3">
+              <p className="text-xs text-neutral-500">{picked.brandName}</p>
+              <p className="text-sm font-semibold">{picked.name}</p>
+              <p className="mt-3 text-xs text-neutral-500">가지고 있는 사이즈를 고르면 실측이 채워져요.</p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {picked.sizes.map((s) => {
+                  const on = sourceId === picked.id && size === s.label;
+                  return (
+                    <button
+                      key={s.label}
+                      onClick={() => loadFromProduct(s.label)}
+                      className={`rounded-full border px-3 py-1 text-xs ${on ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-300 bg-white"}`}
+                    >
+                      {s.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           ) : null}
+          <Link href={selectHref} className="mt-3 block w-full rounded-lg border border-neutral-300 bg-white py-2.5 text-center text-sm font-semibold">
+            {picked ? "다른 상품 선택" : "상품 선택"}
+          </Link>
         </section>
 
         <section className="space-y-3">
