@@ -1,11 +1,11 @@
 "use client";
-import { Suspense, useMemo } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
 import { getBrand, productsByBrand } from "@/lib/data";
-import { useBrandLikes, useLikes } from "@/lib/storage";
+import { removeBrandLike, useBrandLikes, useLikes } from "@/lib/storage";
 import type { Brand } from "@/types/fitmap";
 
 type Tab = "brand" | "product";
@@ -57,8 +57,10 @@ function Likes() {
   );
 }
 
+/** 찜한 브랜드 목록. '편집'을 누르면 각 브랜드 왼쪽에 삭제 버튼이 나온다 */
 function SavedBrands({ ids }: { ids: string[] | null }) {
   const items = useMemo(() => (ids ?? []).map(getBrand).filter((b): b is Brand => Boolean(b)), [ids]);
+  const [editing, setEditing] = useState(false);
   if (ids === null) return null;
   if (items.length === 0) {
     return (
@@ -71,15 +73,61 @@ function SavedBrands({ ids }: { ids: string[] | null }) {
     );
   }
   return (
-    <ul className="mx-5 divide-y divide-neutral-100 border-b border-neutral-100">
-      {items.map((b) => (
-        <li key={b.id}>
-          <Link href={`/brands/${b.id}`} className="flex items-center justify-between py-4">
-            <span className="text-[15px] font-semibold">{b.name}</span>
-            <span className="text-sm text-neutral-400">상품 {productsByBrand(b.id).length}개 ›</span>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className="px-5">
+      <div className="flex items-center justify-between border-b border-neutral-100 py-3">
+        <p className="text-sm text-neutral-500">
+          찜한 브랜드 <span className="font-semibold text-neutral-900">{items.length}</span>
+        </p>
+        <button type="button" onClick={() => setEditing(!editing)} className="text-sm font-semibold text-neutral-700">
+          {editing ? "완료" : "편집"}
+        </button>
+      </div>
+      <ul className="divide-y divide-neutral-100 border-b border-neutral-100">
+        {items.map((b) => {
+          const count = <span className="text-sm text-neutral-400">상품 {productsByBrand(b.id).length}개{editing ? "" : " ›"}</span>;
+          return (
+            <li key={b.id}>
+              {editing ? (
+                // 편집 중에는 실수로 브랜드 페이지로 넘어가지 않게 링크를 끈다
+                <div className="flex items-center gap-3 py-4">
+                  <button
+                    type="button"
+                    onClick={() => removeBrandLike(b.id)}
+                    aria-label={`${b.name} 찜 삭제`}
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-500 text-white"
+                  >
+                    <span className="block h-0.5 w-3 rounded bg-white" />
+                  </button>
+                  <span className="flex-1 text-[15px] font-semibold">{b.name}</span>
+                  {count}
+                </div>
+              ) : (
+                <Link href={`/brands/${b.id}`} className="flex items-center justify-between py-4">
+                  <span className="text-[15px] font-semibold">{b.name}</span>
+                  {count}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      {editing ? (
+        <div className="py-4 text-center">
+          <button
+            type="button"
+            onClick={() => {
+              // 한 번에 다 지워지므로 한 번 더 묻는다
+              if (!window.confirm(`찜한 브랜드 ${items.length}개를 모두 삭제할까요?`)) return;
+              // 목록에 안 보이는 브랜드 ID(데이터에서 빠진 것)까지 같이 지운다
+              for (const id of [...(ids ?? [])]) removeBrandLike(id);
+              setEditing(false);
+            }}
+            className="text-xs text-neutral-400 underline"
+          >
+            전체 삭제
+          </button>
+        </div>
+      ) : null}
+    </div>
   );
 }
