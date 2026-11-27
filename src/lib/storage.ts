@@ -105,9 +105,10 @@ export function useReferences(): ReferenceGarment[] | null {
 export const primaryOf = (refs: ReferenceGarment[] | null, category: Category) =>
   refs?.find((r) => r.category === category && r.isPrimary) ?? refs?.find((r) => r.category === category) ?? null;
 
-// ---------- 찜 · 최근 본 상품 (상품 ID 목록) ----------
+// ---------- 찜(상품·브랜드) · 최근 본 상품 (ID 목록) ----------
 
 const LIKES = "fitmap.likes.v1";
+const BRAND_LIKES = "fitmap.brandLikes.v1";
 const RECENT = "fitmap.recent.v1";
 const RECENT_MAX = 20;
 const LIST_EVT = "fitmap-lists";
@@ -149,6 +150,31 @@ export function toggleLike(productId: string) {
   else addLike(productId);
 }
 
+// 브랜드 찜: 상품 찜과 같은 방식(브랜드 ID 목록, 최근 찜한 순)
+
+/** 찜한 브랜드 ID 목록(최근 찜한 순) */
+export const getBrandLikes = (): string[] => readIds(BRAND_LIKES);
+
+export const isBrandLiked = (brandId: string) => getBrandLikes().includes(brandId);
+
+/** 브랜드 찜 추가. 이미 있으면 그대로 둔다 */
+export function addBrandLike(brandId: string) {
+  const ids = getBrandLikes();
+  if (ids.includes(brandId)) return;
+  writeIds(BRAND_LIKES, [brandId, ...ids]);
+}
+
+export function removeBrandLike(brandId: string) {
+  const ids = getBrandLikes();
+  if (!ids.includes(brandId)) return;
+  writeIds(BRAND_LIKES, ids.filter((x) => x !== brandId));
+}
+
+export function toggleBrandLike(brandId: string) {
+  if (isBrandLiked(brandId)) removeBrandLike(brandId);
+  else addBrandLike(brandId);
+}
+
 /** 상품 상세를 열 때 호출. 가장 최근 본 상품이 맨 앞 */
 export function addRecent(productId: string) {
   const ids = readIds(RECENT);
@@ -183,5 +209,7 @@ function useIds(key: string): string[] | null {
 
 /** 찜한 상품 ID. 서버 렌더링 중에는 null */
 export const useLikes = () => useIds(LIKES);
+/** 찜한 브랜드 ID. 서버 렌더링 중에는 null */
+export const useBrandLikes = () => useIds(BRAND_LIKES);
 /** 최근 본 상품 ID(최신순). 서버 렌더링 중에는 null */
 export const useRecent = () => useIds(RECENT);

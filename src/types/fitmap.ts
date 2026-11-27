@@ -118,6 +118,8 @@ export interface ReferenceGarment {
   measurementBasis?: MeasurementBasis;
   /** FIT MAP 상품에서 골라 자동 입력했는지, 직접 쟀는지 */
   inputMethod: "from_product" | "manual";
+  /** "상품에서 불러오기"로 등록했을 때 불러온 상품 ID(Product.id). 직접 입력했거나 이 필드가 생기기 전에 저장한 옷은 없음 */
+  sourceProductId?: string;
   /** 상의·하의 각각 대표 기준 옷 1개 */
   isPrimary: boolean;
   createdAt: string;
