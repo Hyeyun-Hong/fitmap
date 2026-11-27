@@ -11,7 +11,7 @@ export default function ProductCard({ item, className = "" }: { item: Scored; cl
   return (
     <Link href={`/products/${p.id}`} className={`block ${className}`}>
       <div className="relative">
-        <ProductImage label={p.brandName} className="aspect-[3/4] w-full" />
+        <ProductImage label={p.brandName} src={p.imageUrl} alt={`${p.brandName} ${p.name}`} className="aspect-[3/4] w-full" />
         <LikeButton productId={p.id} className="absolute bottom-2 right-2 h-8 w-8" />
       </div>
       <p className="mt-2 text-xs text-neutral-500">{p.brandName}</p>

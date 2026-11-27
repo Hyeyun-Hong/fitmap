@@ -41,3 +41,21 @@ npm run build   # 배포 전 빌드 확인
 3. AI 의견까지 쓰려면 Vercel 프로젝트 Settings → Environment Variables에 ANTHROPIC_API_KEY 추가 후 Redeploy.
 
 자세한 작업 규칙은 CLAUDE.md 참고.
+
+## 이미지 · 리뷰 데이터 넣는 법
+
+### 상품 이미지
+1. 사용 권한을 확인한 이미지를 `public/images/products/`에 상품 ID 이름으로 넣어요. 예: `P021.jpg`
+2. `data/products.json`에서 그 상품의 `"imageUrl": null`을 `"imageUrl": "/images/products/P021.jpg"`로 바꿔요.
+3. 같은 상품의 `source.note`에 권한 근거를 한 줄 적어요.
+
+이미지가 있으면 상품 카드, 홈 슬라이드, 상품 상세에 자동으로 나오고, 없으면 회색 자리로 남아요.
+
+### 리뷰 분석
+1. 상품 리뷰를 모아요(어디서 언제 모았는지 메모).
+2. Claude 채팅에 `src/lib/prompts.ts`의 `REVIEW_ANALYSIS_PROMPT` 내용을 붙여 넣고, `[브랜드] [상품명]`을 채운 뒤 맨 아래에 리뷰 원문을 붙여요.
+3. 받은 JSON에서 `productId`를 상품 ID(예: `P024`)로 채우고, `source.description`에 출처, `collectedAt`에 수집일을 적어요.
+4. `data/review-summaries.json`의 `[ ]` 안에 붙여 넣어요. 여러 상품이면 쉼표로 이어요.
+5. `npm run check:data`로 확인해요. `✗` 표시가 나오면 그 칸을 고치면 돼요.
+
+리뷰 분석이 있는 상품은 상품 상세와 비교 결과의 "AI 비교 분석"에 자동으로 나오고, 없는 상품은 그 영역이 숨겨져요.

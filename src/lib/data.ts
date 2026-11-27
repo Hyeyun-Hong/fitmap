@@ -1,7 +1,7 @@
 // JSON 데이터 읽기. 화면에서는 data/*.json을 직접 import하지 말고 이 파일의 함수만 쓴다.
 import productsJson from "../../data/products.json";
 import brandsJson from "../../data/brands.json";
-import reviewsJson from "../../data/review-summaries.sample.json";
+import reviewsJson from "../../data/review-summaries.json";
 import type { Brand, Category, Product, ReviewSummary, SubCategory } from "../types/fitmap";
 
 export const products = productsJson as Product[];

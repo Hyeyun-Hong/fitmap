@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { Basis, Category, Part, PartDiff } from "@/types/fitmap";
+import { eunNeun } from "@/lib/prompts";
 
 /**
  * 트레이싱지 겹치기: 상품 실측(회색)을 깔고 기준 옷(초록 반투명)을 위에 겹친다.
@@ -64,19 +65,24 @@ function topPath(d: Dims) {
 function bottomPath(d: Dims, lengthBasis: Basis) {
   const W = d.waist!, T = d.thigh!, R = d.rise!, H = d.hem!;
   const L = lengthBasis === "inseam" ? R + d.length! : d.length!;
-  const c = T / 2;
-  const pts = [
+  const c = T / 2; // 한쪽 다리의 가운데
+  const Tx = T * 0.96; // 가랑이 높이의 바깥선
+  // 허리 → 엉덩이 → 허벅지로 부드럽게 넓어지도록 중간점을 하나 둔다(마름모처럼 꺾이지 않게)
+  const hipY = R * 0.55;
+  const hipX = W / 2 + (Tx - W / 2) * 0.8;
+  const inner = Math.max(c - H / 2, 1);
+  const right = [
     [W / 2, 0],
-    [T, R],
+    [hipX, hipY],
+    [Tx, R + 2],
     [c + H / 2, L],
-    [Math.max(c - H / 2, 1), L],
-    [0, R + 1],
-    [-Math.max(c - H / 2, 1), L],
-    [-(c + H / 2), L],
-    [-T, R],
+    [inner, L],
   ];
-  return { d: `M${-W / 2},0 ` + pts.map(([x, y]) => `L${x.toFixed(1)},${y.toFixed(1)}`).join(" ") + " Z", maxX: Math.max(T, W / 2), maxY: L };
+  const left = right.map(([x, y]) => [-x, y]).reverse();
+  const pts = [...right, [0, R + 1], ...left];
+  return { d: "M" + pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" L") + " Z", maxX: Math.max(Tx, W / 2, hipX), maxY: L };
 }
+
 
 export default function FitOverlay({
   category,
@@ -133,7 +139,8 @@ export default function FitOverlay({
         트레이싱지 진하기
         <input type="range" min={10} max={80} value={paper} onChange={(e) => setPaper(Number(e.target.value))} className="flex-1 accent-emerald-600" />
       </label>
-      {approx.length ? <p className="mt-1 text-[11px] text-neutral-400">{approx.join(", ")}은 비교할 수 없어 같은 크기로 그렸어요.</p> : null}
+      {approx.length ? <p className="mt-1 text-[11px] text-neutral-400">{approx.join(", ")}
+          {eunNeun(approx.at(-1) ?? "")} 비교할 수 없어 같은 크기로 그렸어요.</p> : null}
     </div>
   );
 }
