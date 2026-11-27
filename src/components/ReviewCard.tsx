@@ -1,14 +1,10 @@
 import type { ReviewSummary } from "@/types/fitmap";
 
 export default function ReviewCard({ review }: { review: ReviewSummary | null }) {
-  if (!review) {
-    return (
-      <section className="rounded-xl border border-dashed border-neutral-300 p-4">
-        <h3 className="text-sm font-bold">리뷰 분석</h3>
-        <p className="mt-1 text-sm text-neutral-500">이 상품의 리뷰 분석을 준비하고 있어요.</p>
-      </section>
-    );
-  }
+  // 리뷰 분석 데이터가 없는 상품은 영역 자체를 숨긴다(CLAUDE.md AI 규칙)
+  if (!review) return null;
+  const r = review.sizeFit.ratio;
+  const total = r.small + r.true + r.large;
   return (
     <section className="space-y-3 rounded-xl border border-neutral-200 p-4">
       <div className="flex items-center justify-between">
@@ -22,6 +18,20 @@ export default function ReviewCard({ review }: { review: ReviewSummary | null })
         <p className="text-sm">
           {review.sizeFit.overall} · 신축성 {review.sizeFit.stretch}
         </p>
+        {total > 0 ? (
+          <div className="my-2">
+            <div className="flex h-2 overflow-hidden rounded-full bg-neutral-100">
+              <div className="bg-sky-400" style={{ width: `${(r.small / total) * 100}%` }} />
+              <div className="bg-emerald-500" style={{ width: `${(r.true / total) * 100}%` }} />
+              <div className="bg-rose-400" style={{ width: `${(r.large / total) * 100}%` }} />
+            </div>
+            <div className="mt-1 flex justify-between text-[11px] text-neutral-500">
+              <span>작아요 {Math.round((r.small / total) * 100)}%</span>
+              <span>정사이즈 {Math.round((r.true / total) * 100)}%</span>
+              <span>커요 {Math.round((r.large / total) * 100)}%</span>
+            </div>
+          </div>
+        ) : null}
         {review.sizeFit.byPart.map((b) => (
           <p key={b.part} className="text-sm text-neutral-600">
             {b.part}: {b.note}
@@ -46,6 +56,10 @@ export default function ReviewCard({ review }: { review: ReviewSummary | null })
         </div>
       ) : null}
       {review.confidence === "낮음" ? <p className="text-xs text-neutral-400">리뷰가 적어 참고용이에요.</p> : null}
+      <p className="text-[11px] text-neutral-400">
+        {review.source.description}
+        {review.source.collectedAt ? ` · 수집일 ${review.source.collectedAt}` : ""}
+      </p>
     </section>
   );
 }

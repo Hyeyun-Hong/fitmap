@@ -63,7 +63,9 @@ src/
 data/
   brands.json
   products.json
-  review-summaries.json
+  review-summaries.json         # 리뷰 분석 결과(상품당 1개, 없으면 화면에서 숨김)
+public/images/products/         # 사용 권한 확인된 상품 이미지(<상품ID>.jpg)
+scripts/check-data.ts           # 데이터 형식 검사(npm run check:data)
 ```
 
 새 페이지나 폴더를 만들 때 위 구조를 따른다. 같은 기능을 다른 위치에 또 만들지 않는다.
@@ -75,7 +77,8 @@ data/
 - 실측이 없는 항목은 키를 빼거나 `null`. 다른 사이즈나 다른 상품 값으로 추정해서 채우지 않는다.
 - 측정 기준이 단면이 아니면 `measurementBasis`에 적는다. 예: 유니클로 허리 둘레 → `{ "waist": "circumference" }`, 인심 → `{ "length": "inseam" }`, 화장 → `{ "sleeve": "center_back" }`.
 - `source.url`, `source.checkedAt`(YYYY-MM-DD)을 채운다. 모르면 `null`로 두고 `note`에 이유를 적는다.
-- `imageUrl`은 사용 권한이 확인된 경우에만 넣는다. 아니면 `null`로 두고 화면에서는 플레이스홀더를 보여준다.
+- `imageUrl`은 사용 권한이 확인된 경우에만 넣는다. 아니면 `null`로 두고 화면에서는 플레이스홀더를 보여준다. 파일은 `public/images/products/<상품ID>.jpg`에 두고 `imageUrl`에 `/images/products/<상품ID>.jpg`로 적는다. 권한 근거는 `source.note`에 남긴다.
+- 리뷰 분석은 `REVIEW_ANALYSIS_PROMPT`로 만든 JSON을 `data/review-summaries.json` 배열에 상품당 하나씩 넣는다. 넣은 뒤 `npm run check:data`가 통과해야 PR을 올린다.
 
 ## 계산 규칙 (src/lib/fit.ts)
 
@@ -119,6 +122,7 @@ data/
 ```
 npm run dev                            # 로컬 실행
 npx tsx --test src/lib/fit.test.ts     # 계산 로직 테스트
+npm run check:data                     # 상품 이미지 경로 · 리뷰 분석 JSON 형식 검사(데이터 PR 전 필수)
 npm run build                          # 배포 전 빌드 확인
 ```
 

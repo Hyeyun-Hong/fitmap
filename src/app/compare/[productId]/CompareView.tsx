@@ -85,11 +85,13 @@ export default function CompareView({ product, review }: { product: Product; rev
             </p>
           ))}
 
-          <section className="space-y-3">
-            <h3 className="text-sm font-bold">AI 비교 분석</h3>
-            {result.recommendedSize ? <OpinionCard reference={reference} product={product} result={result} review={review} /> : null}
-            <ReviewCard review={review} />
-          </section>
+          {result.recommendedSize || review ? (
+            <section className="space-y-3">
+              <h3 className="text-sm font-bold">AI 비교 분석</h3>
+              {result.recommendedSize ? <OpinionCard reference={reference} product={product} result={result} review={review} /> : null}
+              <ReviewCard review={review} />
+            </section>
+          ) : null}
 
           <p className="text-[11px] leading-relaxed text-neutral-400">
             핏 유사도는 기준 옷과 실측이 얼마나 비슷한지를 나타낸 값이에요. 실측이 비슷해도 소재, 신축성, 디자인에 따라 착용감은 다를 수 있어요.

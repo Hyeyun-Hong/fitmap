@@ -32,7 +32,12 @@ export default function ProductDetail({ product, review }: { product: Product; r
     <div className="space-y-5 px-5 py-5">
       <RecentTracker productId={product.id} />
       <div className="relative">
-        <ProductImage label="상품 이미지는 공식 페이지에서 확인해 주세요" className="aspect-square w-full" />
+        <ProductImage
+          label="상품 이미지는 공식 페이지에서 확인해 주세요"
+          src={product.imageUrl}
+          alt={`${product.brandName} ${product.name}`}
+          className="aspect-square w-full"
+        />
         <LikeButton productId={product.id} className="absolute bottom-3 right-3" />
       </div>
 
@@ -88,13 +93,15 @@ export default function ProductDetail({ product, review }: { product: Product; r
         {product.sizes.length === 0 ? <p className="text-sm text-neutral-500">공식 페이지에서 실측 정보를 확인하지 못한 상품이에요.</p> : null}
       </section>
 
-      <section className="space-y-3">
-        <h3 className="text-sm font-bold">AI 비교 분석</h3>
-        {reference && result && result.recommendedSize ? (
-          <OpinionCard reference={reference} product={product} result={result} review={review} />
-        ) : null}
-        <ReviewCard review={review} />
-      </section>
+      {(reference && result && result.recommendedSize) || review ? (
+        <section className="space-y-3">
+          <h3 className="text-sm font-bold">AI 비교 분석</h3>
+          {reference && result && result.recommendedSize ? (
+            <OpinionCard reference={reference} product={product} result={result} review={review} />
+          ) : null}
+          <ReviewCard review={review} />
+        </section>
+      ) : null}
 
       {product.sizes.length > 0 ? (
         <section>
