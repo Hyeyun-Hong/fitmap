@@ -1,6 +1,6 @@
 "use client";
 // 마이페이지 '찜한 브랜드' 가로 목록.
-// PREVIEW개까지만 보여주고, 더 있으면 끝에 '전체 보기' 카드를 둔다.
+// PREVIEW개까지만 보여주고, 더 있으면 끝에 '더 밀면 전체 보기' 안내를 둔다.
 // 오른쪽 끝에 닿은 상태에서 한 번 더 끌었다가 놓으면 찜 페이지 브랜드 탭으로 넘어간다.
 // (관성으로 끝에 닿거나 끝에서 탭만 한 경우에는 넘어가지 않는다)
 import { useRef, useState } from "react";
@@ -76,26 +76,19 @@ export default function LikedBrandsRow({ brands }: { brands: Brand[] }) {
         </li>
       ))}
       {hasMore ? (
-        <>
-          <li className="shrink-0">
-            <Link href={ALL_HREF} className="flex h-full min-w-24 flex-col items-center justify-center rounded-xl bg-neutral-100 px-4 py-3 text-sm font-semibold text-neutral-700">
+        // 끝에 닿으면 안내를 보여준다. 여기서 한 번 더 끌었다 놓으면 넘어간다
+        // (누르는 전체 보기는 영역 오른쪽 위 '전체 보기 ›' 링크)
+        <li aria-hidden="true" className="flex w-14 shrink-0 items-center justify-center text-center text-[11px] leading-tight text-neutral-400">
+          {atEnd ? (
+            <span>
+              더 밀면
+              <br />
               전체 보기
-              <span className="mt-1 text-xs font-normal text-neutral-400">+{brands.length - PREVIEW}개 →</span>
-            </Link>
-          </li>
-          {/* 끝에 닿으면 안내를 보여준다. 여기서 한 번 더 끌었다 놓으면 넘어간다 */}
-          <li aria-hidden="true" className="flex w-14 shrink-0 items-center justify-center text-center text-[11px] leading-tight text-neutral-400">
-            {atEnd ? (
-              <span>
-                더 밀면
-                <br />
-                전체 보기
-              </span>
-            ) : (
-              "›"
-            )}
-          </li>
-        </>
+            </span>
+          ) : (
+            "›"
+          )}
+        </li>
       ) : null}
     </ul>
   );
