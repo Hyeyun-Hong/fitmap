@@ -3,7 +3,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
 import { removeReference, setPrimary, useLikes, useRecent, useReferences } from "@/lib/storage";
-import { gradeOf } from "@/lib/grade";
+import { GRADES, gradeOf } from "@/lib/grade";
 import { CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
@@ -33,12 +33,15 @@ export default function MyPage() {
           <div className="mt-1 flex items-end justify-between">
             <p className="text-2xl font-bold">{refs === null ? "" : grade.name}</p>
             <div className="flex gap-1">
-              {[1, 2, 3, 4].map((n) => (
-                <span key={n} className={`h-1.5 w-6 rounded-full ${n <= grade.level ? "bg-emerald-400" : "bg-neutral-700"}`} />
+              {GRADES.map((g) => (
+                <span key={g.level} className={`h-1.5 w-6 rounded-full ${g.level <= grade.level ? "bg-emerald-400" : "bg-neutral-700"}`} />
               ))}
             </div>
           </div>
           <p className="mt-2 text-sm text-neutral-300">{grade.next ?? "모든 등급을 달성했어요."}</p>
+          <Link href="/mypage/grade" className="mt-4 inline-block rounded-full border border-neutral-600 px-3 py-1.5 text-xs text-neutral-200">
+            등급 기준 보기 ›
+          </Link>
         </section>
 
         <section>
