@@ -1,24 +1,25 @@
 "use client";
 import Link from "next/link";
 import Header from "@/components/Header";
-import SavedProducts from "@/components/SavedProducts";
-import { removeReference, setPrimary, useLikes, useRecent, useReferences } from "@/lib/storage";
+import LikedBrandsRow from "./LikedBrandsRow";
+import LikedProductsRow from "./LikedProductsRow";
+import { removeReference, setPrimary, useBrandLikes, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { GRADES, gradeOf } from "@/lib/grade";
-import { CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
+import { CATEGORY_LABEL, SUB_LABEL, getBrand, getProduct } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
-import type { Category } from "@/types/fitmap";
-
-/** 마이페이지에 미리 보여줄 찜 상품 수 */
-const LIKE_PREVIEW = 4;
+import type { Brand, Category, Product } from "@/types/fitmap";
 
 export default function MyPage() {
   const refs = useReferences();
   const grade = gradeOf(refs ?? []);
   const likes = useLikes();
+  const brandLikes = useBrandLikes();
+  // 데이터에서 빠진 상품·브랜드 ID는 보여줄 수 없으므로 뺀다
+  const likedProducts = (likes ?? []).map(getProduct).filter((p): p is Product => Boolean(p));
+  const likedBrands = (brandLikes ?? []).map(getBrand).filter((b): b is Brand => Boolean(b));
   const recent = useRecent();
   const menu = [
-    { label: "찜", href: "/mypage/likes", note: likes ? String(likes.length) : "" },
     { label: "최근 본 상품", href: "/mypage/recent", note: recent ? String(recent.length) : "" },
     { label: "설정", href: "/settings", note: "" },
   ];
@@ -108,19 +109,49 @@ export default function MyPage() {
         </section>
 
         <section>
-          <div className="flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <h2 className="text-lg font-bold">
-              찜한 상품 <span className="text-emerald-600">{likes?.length ?? 0}</span>
+              찜한 상품 <span className="text-emerald-600">{likedProducts.length}</span>
             </h2>
-            {likes && likes.length > LIKE_PREVIEW ? (
+            {likedProducts.length > 0 ? (
               <Link href="/mypage/likes" className="text-xs text-neutral-500">
                 전체 보기 ›
               </Link>
             ) : null}
           </div>
-          <div className="-mx-5">
-            <SavedProducts ids={likes} limit={LIKE_PREVIEW} empty="찜한 상품이 없어요. 상품의 하트를 눌러 담아 보세요." />
+          {likes === null ? null : likedProducts.length === 0 ? (
+            <div className="py-6 text-center">
+              <p className="text-sm text-neutral-500">찜한 상품이 없어요. 상품의 하트를 눌러 담아 보세요.</p>
+              <Link href="/" className="mt-4 inline-block rounded-lg border border-neutral-300 px-4 py-2 text-sm">
+                상품 보러 가기
+              </Link>
+            </div>
+          ) : (
+            <LikedProductsRow products={likedProducts} />
+          )}
+        </section>
+
+        <section>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-lg font-bold">
+              찜한 브랜드 <span className="text-emerald-600">{likedBrands.length}</span>
+            </h2>
+            {likedBrands.length > 0 ? (
+              <Link href="/mypage/likes?tab=brand" className="text-xs text-neutral-500">
+                전체 보기 ›
+              </Link>
+            ) : null}
           </div>
+          {brandLikes === null ? null : likedBrands.length === 0 ? (
+            <div className="py-6 text-center">
+              <p className="text-sm text-neutral-500">찜한 브랜드가 없어요. 브랜드 페이지의 하트를 눌러 담아 보세요.</p>
+              <Link href="/brands" className="mt-4 inline-block rounded-lg border border-neutral-300 px-4 py-2 text-sm">
+                브랜드 보러 가기
+              </Link>
+            </div>
+          ) : (
+            <LikedBrandsRow brands={likedBrands} />
+          )}
         </section>
 
         <ul className="divide-y divide-neutral-100 border-y border-neutral-100">
