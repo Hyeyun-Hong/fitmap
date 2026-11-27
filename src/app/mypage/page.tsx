@@ -4,10 +4,10 @@ import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
 import { removeReference, setPrimary, useBrandLikes, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { GRADES, gradeOf } from "@/lib/grade";
-import { CATEGORY_LABEL, SUB_LABEL, getBrand } from "@/lib/data";
+import { CATEGORY_LABEL, SUB_LABEL, getBrand, productsByBrand } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
-import type { Category } from "@/types/fitmap";
+import type { Brand, Category } from "@/types/fitmap";
 
 /** 마이페이지에 미리 보여줄 찜 상품 수 */
 const LIKE_PREVIEW = 4;
@@ -17,10 +17,10 @@ export default function MyPage() {
   const grade = gradeOf(refs ?? []);
   const likes = useLikes();
   const brandLikes = useBrandLikes();
+  // 데이터에서 빠진 브랜드 ID는 보여줄 수 없으므로 뺀다
+  const likedBrands = (brandLikes ?? []).map(getBrand).filter((b): b is Brand => Boolean(b));
   const recent = useRecent();
   const menu = [
-    // 찜한 상품은 위 영역에서 보여주므로 메뉴에서는 찜한 브랜드로 바로 간다
-    { label: "찜한 브랜드", href: "/mypage/likes?tab=brand", note: brandLikes ? String(brandLikes.filter((id) => getBrand(id)).length) : "" },
     { label: "최근 본 상품", href: "/mypage/recent", note: recent ? String(recent.length) : "" },
     { label: "설정", href: "/settings", note: "" },
   ];
@@ -123,6 +123,39 @@ export default function MyPage() {
           <div className="-mx-5">
             <SavedProducts ids={likes} limit={LIKE_PREVIEW} empty="찜한 상품이 없어요. 상품의 하트를 눌러 담아 보세요." />
           </div>
+        </section>
+
+        <section>
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-lg font-bold">
+              찜한 브랜드 <span className="text-emerald-600">{likedBrands.length}</span>
+            </h2>
+            {likedBrands.length > 0 ? (
+              <Link href="/mypage/likes?tab=brand" className="text-xs text-neutral-500">
+                전체 보기 ›
+              </Link>
+            ) : null}
+          </div>
+          {brandLikes === null ? null : likedBrands.length === 0 ? (
+            <div className="py-6 text-center">
+              <p className="text-sm text-neutral-500">찜한 브랜드가 없어요. 브랜드 페이지의 하트를 눌러 담아 보세요.</p>
+              <Link href="/brands" className="mt-4 inline-block rounded-lg border border-neutral-300 px-4 py-2 text-sm">
+                브랜드 보러 가기
+              </Link>
+            </div>
+          ) : (
+            // 여러 개면 가로로 넘겨 보기
+            <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1">
+              {likedBrands.map((b) => (
+                <li key={b.id} className="shrink-0">
+                  <Link href={`/brands/${b.id}`} className="flex min-w-28 flex-col rounded-xl border border-neutral-200 px-4 py-3">
+                    <span className="whitespace-nowrap text-[15px] font-semibold">{b.name}</span>
+                    <span className="mt-1 text-xs text-neutral-400">상품 {productsByBrand(b.id).length}개 ›</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         <ul className="divide-y divide-neutral-100 border-y border-neutral-100">
