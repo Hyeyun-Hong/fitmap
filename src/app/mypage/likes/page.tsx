@@ -1,6 +1,7 @@
 "use client";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
 import { getBrand, productsByBrand } from "@/lib/data";
@@ -9,10 +10,22 @@ import type { Brand } from "@/types/fitmap";
 
 type Tab = "brand" | "product";
 
+// /mypage/likes → 상품 탭, /mypage/likes?tab=brand → 브랜드 탭
 export default function LikesPage() {
+  return (
+    <Suspense fallback={null}>
+      <Likes />
+    </Suspense>
+  );
+}
+
+function Likes() {
+  const router = useRouter();
   const likes = useLikes();
   const brandLikes = useBrandLikes();
-  const [tab, setTab] = useState<Tab>("product");
+  const tab: Tab = useSearchParams().get("tab") === "brand" ? "brand" : "product";
+  // 탭을 주소에 남겨 두면 브랜드 페이지에 갔다가 뒤로 와도 같은 탭이 열린다
+  const setTab = (t: Tab) => router.replace(t === "brand" ? "/mypage/likes?tab=brand" : "/mypage/likes", { scroll: false });
   const tabs: { key: Tab; label: string; count: number | undefined }[] = [
     // 데이터에서 빠진 브랜드 ID는 목록에 안 나오므로 개수에서도 뺀다
     { key: "brand", label: "브랜드", count: brandLikes?.filter((id) => getBrand(id)).length },

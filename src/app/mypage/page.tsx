@@ -2,9 +2,9 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
-import { removeReference, setPrimary, useLikes, useRecent, useReferences } from "@/lib/storage";
+import { removeReference, setPrimary, useBrandLikes, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { GRADES, gradeOf } from "@/lib/grade";
-import { CATEGORY_LABEL, SUB_LABEL } from "@/lib/data";
+import { CATEGORY_LABEL, SUB_LABEL, getBrand } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
 import type { Category } from "@/types/fitmap";
@@ -16,9 +16,11 @@ export default function MyPage() {
   const refs = useReferences();
   const grade = gradeOf(refs ?? []);
   const likes = useLikes();
+  const brandLikes = useBrandLikes();
   const recent = useRecent();
   const menu = [
-    { label: "찜", href: "/mypage/likes", note: likes ? String(likes.length) : "" },
+    // 찜한 상품은 위 영역에서 보여주므로 메뉴에서는 찜한 브랜드로 바로 간다
+    { label: "찜한 브랜드", href: "/mypage/likes?tab=brand", note: brandLikes ? String(brandLikes.filter((id) => getBrand(id)).length) : "" },
     { label: "최근 본 상품", href: "/mypage/recent", note: recent ? String(recent.length) : "" },
     { label: "설정", href: "/settings", note: "" },
   ];
