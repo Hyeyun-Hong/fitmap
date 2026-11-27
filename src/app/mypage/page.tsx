@@ -18,7 +18,6 @@ export default function MyPage() {
   const likes = useLikes();
   const recent = useRecent();
   const menu = [
-    { label: "새 기준 옷 등록", href: "/register", note: "" },
     { label: "찜", href: "/mypage/likes", note: likes ? String(likes.length) : "" },
     { label: "최근 본 상품", href: "/mypage/recent", note: recent ? String(recent.length) : "" },
     { label: "설정", href: "/settings", note: "" },
