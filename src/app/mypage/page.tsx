@@ -2,9 +2,10 @@
 import Link from "next/link";
 import Header from "@/components/Header";
 import SavedProducts from "@/components/SavedProducts";
+import LikedBrandsRow from "./LikedBrandsRow";
 import { removeReference, setPrimary, useBrandLikes, useLikes, useRecent, useReferences } from "@/lib/storage";
 import { GRADES, gradeOf } from "@/lib/grade";
-import { CATEGORY_LABEL, SUB_LABEL, getBrand, productsByBrand } from "@/lib/data";
+import { CATEGORY_LABEL, SUB_LABEL, getBrand } from "@/lib/data";
 import { PART_LABEL } from "@/types/fitmap";
 import { partsOf } from "@/lib/fit";
 import type { Brand, Category } from "@/types/fitmap";
@@ -144,17 +145,7 @@ export default function MyPage() {
               </Link>
             </div>
           ) : (
-            // 여러 개면 가로로 넘겨 보기
-            <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1">
-              {likedBrands.map((b) => (
-                <li key={b.id} className="shrink-0">
-                  <Link href={`/brands/${b.id}`} className="flex min-w-28 flex-col rounded-xl border border-neutral-200 px-4 py-3">
-                    <span className="whitespace-nowrap text-[15px] font-semibold">{b.name}</span>
-                    <span className="mt-1 text-xs text-neutral-400">상품 {productsByBrand(b.id).length}개 ›</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <LikedBrandsRow brands={likedBrands} />
           )}
         </section>
 
