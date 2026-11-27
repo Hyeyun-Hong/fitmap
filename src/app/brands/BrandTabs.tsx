@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Brand, Category } from "@/types/fitmap";
 import { CATEGORY_LABEL } from "@/lib/data";
+import BrandLikeButton from "@/components/BrandLikeButton";
 
 type Row = Brand & { topCount: number; bottomCount: number };
 
@@ -20,11 +21,12 @@ export default function BrandTabs({ brands }: { brands: Row[] }) {
       </div>
       <ul className="grid grid-cols-2 gap-3 p-5">
         {shown.map((b) => (
-          <li key={b.id}>
-            <Link href={`/brands/${b.id}`} className="flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200">
+          <li key={b.id} className="relative">
+            <Link href={`/brands/${b.id}`} className="flex h-24 flex-col items-center justify-center rounded-xl border border-neutral-200 px-3 pt-6 text-center">
               <span className="font-bold">{b.name}</span>
               <span className="mt-1 text-xs text-neutral-400">상품 {tab === "top" ? b.topCount : b.bottomCount}개</span>
             </Link>
+            <BrandLikeButton brandId={b.id} className="absolute right-2 top-2 h-8 w-8" />
           </li>
         ))}
       </ul>
